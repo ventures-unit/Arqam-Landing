@@ -426,15 +426,15 @@ export default function Home() {
                 className="group relative"
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-4">
-                      <span className="text-white font-bold text-lg">M</span>
+                <div className="relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                  <div className="flex items-center mb-4">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-3">
+                      <span className="text-white font-bold text-sm">M</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">Mission</h3>
+                    <h3 className="text-xl font-bold text-gray-900">Mission</h3>
                   </div>
-                  <p className="text-gray-700 leading-relaxed text-lg">
-                    Our mission is to bridge Egypt&apos;s data gaps by building a high-integrity platform that delivers timely datasets. We empower policymakers, researchers, entrepreneurs, and development partners with the information they need to drive inclusive growth, innovation, and evidence-based decision-making.
+                  <p className="text-gray-700 leading-relaxed">
+                    Bridge Egypt&apos;s data gaps with timely, high-integrity datasets for better decision-making.
                   </p>
                 </div>
               </motion.div>
@@ -447,15 +447,15 @@ export default function Home() {
                 className="group relative"
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
-                      <span className="text-white font-bold text-lg">V</span>
+                <div className="relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                  <div className="flex items-center mb-4">
+                    <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                      <span className="text-white font-bold text-sm">V</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">Vision</h3>
+                    <h3 className="text-xl font-bold text-gray-900">Vision</h3>
                   </div>
-                  <p className="text-gray-700 leading-relaxed text-lg">
-                    To establish a trusted, AI-powered data room that curates, structures, and delivers actionable insights across entrepreneurship, investment, and economic development in Egypt by centralizing access to verified, cross-referenced knowledge.
+                  <p className="text-gray-700 leading-relaxed">
+                    A trusted, AI-powered data room delivering actionable insights across Egypt&apos;s economic landscape.
                   </p>
                 </div>
               </motion.div>
@@ -471,15 +471,15 @@ export default function Home() {
                 className="group relative"
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center mr-4">
-                      <span className="text-white font-bold text-lg">G</span>
+                <div className="relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                  <div className="flex items-center mb-4">
+                    <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center mr-3">
+                      <span className="text-white font-bold text-sm">G</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">Goal</h3>
+                    <h3 className="text-xl font-bold text-gray-900">Goal</h3>
                   </div>
-                  <p className="text-gray-700 leading-relaxed text-lg">
-                    Create a centralized, AI-powered platform that transforms Egypt&apos;s fragmented data landscape into a unified, accessible, and actionable intelligence system for all stakeholders in the economic ecosystem.
+                  <p className="text-gray-700 leading-relaxed">
+                    Transform Egypt&apos;s fragmented data into a unified, accessible intelligence system.
                   </p>
                 </div>
               </motion.div>
@@ -492,15 +492,15 @@ export default function Home() {
                 className="group relative"
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-amber-600 to-orange-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-600 rounded-xl flex items-center justify-center mr-4">
-                      <span className="text-white font-bold text-lg">O</span>
+                <div className="relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                  <div className="flex items-center mb-4">
+                    <div className="w-10 h-10 bg-gradient-to-r from-amber-500 to-orange-600 rounded-lg flex items-center justify-center mr-3">
+                      <span className="text-white font-bold text-sm">O</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">Objective</h3>
+                    <h3 className="text-xl font-bold text-gray-900">Objective</h3>
                   </div>
-                  <p className="text-gray-700 leading-relaxed text-lg">
-                    Deliver real-time, verified market intelligence that enables data-driven decisions, fosters collaboration across sectors, and accelerates Egypt&apos;s economic development through comprehensive data accessibility and AI-powered insights.
+                  <p className="text-gray-700 leading-relaxed">
+                    Deliver real-time market intelligence that accelerates Egypt&apos;s economic development.
                   </p>
                 </div>
               </motion.div>

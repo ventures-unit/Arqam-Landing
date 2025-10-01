@@ -20,7 +20,7 @@ export function trackWebVitals() {
 /**
  * Send performance metrics to analytics
  */
-function sendToAnalytics(metric: any) {
+function sendToAnalytics(metric: { name: string; value: number; id: string }) {
   // Send to Google Analytics if available
   if (typeof gtag !== 'undefined') {
     gtag('event', metric.name, {
@@ -234,7 +234,7 @@ export function checkPerformanceBudget() {
 
   // Check bundle size
   const scripts = Array.from(document.querySelectorAll('script[src]'));
-  const totalScriptSize = scripts.reduce((total, script) => {
+  const totalScriptSize = scripts.reduce((total) => {
     // This is a simplified check - in reality you'd need to fetch and measure
     return total;
   }, 0);

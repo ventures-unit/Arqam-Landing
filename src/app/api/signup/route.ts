@@ -39,11 +39,11 @@ export async function POST(request: NextRequest) {
       data: result.data 
     })
 
-  } catch (error: any) {
+    } catch (error: unknown) {
     console.error('API Error:', error)
     
     return NextResponse.json(
-      { error: error.message || 'Something went wrong. Please try again.' },
+      { error: error instanceof Error ? error.message : 'Something went wrong. Please try again.' },
       { status: 500 }
     )
   }

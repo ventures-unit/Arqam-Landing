@@ -15,9 +15,9 @@ export interface ValidationResult {
 /**
  * Enhanced input validation with comprehensive checks
  */
-export function validateInput(data: any): ValidationResult {
+export function validateInput(data: Record<string, unknown>): ValidationResult {
   const errors: string[] = [];
-  const sanitizedData: any = {};
+  const sanitizedData: Record<string, unknown> = {};
 
   // Email validation
   if (!data.email) {
@@ -169,7 +169,7 @@ export function isDisposableEmail(email: string): boolean {
 /**
  * Check for suspicious patterns in input
  */
-export function detectSuspiciousActivity(data: any): boolean {
+export function detectSuspiciousActivity(data: Record<string, unknown>): boolean {
   const suspiciousPatterns = [
     /script/i,
     /javascript:/i,

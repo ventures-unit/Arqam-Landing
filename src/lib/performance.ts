@@ -9,7 +9,7 @@ export function trackWebVitals() {
 
   // Simple performance tracking without external dependencies
   // This can be enhanced later with web-vitals when needed
-  console.log('Performance tracking initialized');
+  console.log('Performance tracking initialized - Vercel deployment fix');
 }
 
 /**

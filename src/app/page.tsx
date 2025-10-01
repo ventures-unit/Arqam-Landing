@@ -77,37 +77,37 @@ export default function Home() {
   };
 
   return (
-    <div className=&quot;min-h-screen bg-white&quot;>
+    <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className=&quot;sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200&quot;>
-        <div className=&quot;max-w-7xl mx-auto px-4 sm:px-6 lg:px-8&quot;>
-          <div className=&quot;flex items-center justify-between h-16 relative&quot;>
+      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 relative">
             {/* Logo */}
-            <div className=&quot;flex items-center space-x-2&quot;>
-              <div className=&quot;w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center&quot;>
-                <span className=&quot;text-white font-bold text-sm&quot;>q</span>
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">q</span>
               </div>
-              <span className=&quot;text-xl md:text-2xl font-bold text-blue-900&quot;>arqam</span>
+              <span className="text-xl md:text-2xl font-bold text-blue-900">arqam</span>
             </div>
 
             {/* Desktop Navigation - Absolutely Centered */}
-            <div className=&quot;hidden lg:flex items-center absolute left-1/2 transform -translate-x-1/2&quot;>
-              <div className=&quot;flex items-center space-x-8&quot;>
+            <div className="hidden lg:flex items-center absolute left-1/2 transform -translate-x-1/2">
+              <div className="flex items-center space-x-8">
                 <button 
                   onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
-                  className=&quot;text-gray-600 hover:text-gray-900 font-medium transition-colors&quot;
+                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
                 >
                   Features
                 </button>
                 <button 
                   onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-                  className=&quot;text-gray-600 hover:text-gray-900 font-medium transition-colors&quot;
+                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
                 >
                   About
                 </button>
                 <button 
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className=&quot;text-gray-600 hover:text-gray-900 font-medium transition-colors&quot;
+                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
                 >
                   Contact
                 </button>
@@ -115,28 +115,28 @@ export default function Home() {
             </div>
 
             {/* Desktop CTA Button */}
-            <div className=&quot;hidden md:block&quot;>
+            <div className="hidden md:block">
               <button 
                 onClick={() => document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' })}
-                className=&quot;bg-blue-600 text-white px-4 lg:px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl text-sm lg:text-base&quot;
+                className="bg-blue-600 text-white px-4 lg:px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl text-sm lg:text-base"
               >
                 Register for Early Access
               </button>
             </div>
 
             {/* Mobile Menu Button */}
-            <div className=&quot;md:hidden flex items-center space-x-3&quot;>
+            <div className="md:hidden flex items-center space-x-3">
               <button 
                 onClick={() => document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' })}
-                className=&quot;bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm&quot;
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm"
               >
                 Sign Up
               </button>
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className=&quot;p-2 rounded-lg hover:bg-gray-100 transition-colors&quot;
+                className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
               >
-                {isMobileMenuOpen ? <X className=&quot;w-6 h-6&quot; /> : <Menu className=&quot;w-6 h-6&quot; />}
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
           </div>
@@ -147,15 +147,15 @@ export default function Home() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className=&quot;md:hidden border-t border-gray-200 bg-white&quot;
+              className="md:hidden border-t border-gray-200 bg-white"
             >
-              <div className=&quot;px-2 pt-2 pb-3 space-y-1&quot;>
+              <div className="px-2 pt-2 pb-3 space-y-1">
                 <button 
                   onClick={() => {
                     document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
                     setIsMobileMenuOpen(false);
                   }}
-                  className=&quot;block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors&quot;
+                  className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors"
                 >
                   Features
                 </button>
@@ -164,7 +164,7 @@ export default function Home() {
                     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
                     setIsMobileMenuOpen(false);
                   }}
-                  className=&quot;block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors&quot;
+                  className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors"
                 >
                   About
                 </button>
@@ -173,7 +173,7 @@ export default function Home() {
                     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                     setIsMobileMenuOpen(false);
                   }}
-                  className=&quot;block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors&quot;
+                  className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors"
                 >
                   Contact
                 </button>
@@ -182,7 +182,7 @@ export default function Home() {
                     document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
                     setIsMobileMenuOpen(false);
                   }}
-                  className=&quot;block w-full text-left px-3 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-lg font-medium transition-colors mt-2&quot;
+                  className="block w-full text-left px-3 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-lg font-medium transition-colors mt-2"
                 >
                   Register for Early Access
                 </button>
@@ -193,24 +193,24 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className=&quot;pt-16 md:pt-24 pb-12 md:pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden&quot;>
+      <section className="pt-16 md:pt-24 pb-12 md:pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
         {/* Background Elements - Hidden on mobile */}
-        <div className=&quot;absolute inset-0 overflow-hidden hidden md:block&quot;>
-          <div className=&quot;absolute -top-40 -right-40 w-80 h-80 bg-blue-100 rounded-full opacity-20&quot;></div>
-          <div className=&quot;absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-100 rounded-full opacity-20&quot;></div>
-          <div className=&quot;absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full opacity-10&quot;></div>
+        <div className="absolute inset-0 overflow-hidden hidden md:block">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-100 rounded-full opacity-20"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-100 rounded-full opacity-20"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full opacity-10"></div>
         </div>
 
-        <div className=&quot;max-w-6xl mx-auto text-center relative z-10&quot;>
+        <div className="max-w-6xl mx-auto text-center relative z-10">
           {/* Badge */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className=&quot;inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full mb-6 md:mb-8 shadow-lg&quot;
+            className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full mb-6 md:mb-8 shadow-lg"
           >
-            <Sparkles className=&quot;w-4 h-4 md:w-5 md:h-5&quot; />
-            <span className=&quot;font-semibold text-sm md:text-base&quot;>Coming Q4 2025 • Limited Early Access</span>
+            <Sparkles className="w-4 h-4 md:w-5 md:h-5" />
+            <span className="font-semibold text-sm md:text-base">Coming Q4 2025 • Limited Early Access</span>
           </motion.div>
 
           {/* Main Title */}
@@ -218,10 +218,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className=&quot;text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-gray-900 mb-4 md:mb-6 leading-tight&quot;
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-gray-900 mb-4 md:mb-6 leading-tight"
           >
             Egypt&apos;s Market Intelligence
-            <span className=&quot;block text-3xl sm:text-4xl md:text-5xl lg:text-6xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mt-1 md:mt-2&quot;>
+            <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mt-1 md:mt-2">
               Platform
             </span>
           </motion.h1>
@@ -231,10 +231,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className=&quot;text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600 mb-8 md:mb-12 max-w-4xl mx-auto leading-relaxed font-light px-4&quot;
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600 mb-8 md:mb-12 max-w-4xl mx-auto leading-relaxed font-light px-4"
           >
-            The first <span className=&quot;font-bold text-blue-600&quot;>centralized data room</span> for Egypt&apos;s private sector. 
-            <br className=&quot;hidden sm:block&quot; />Real-time insights, AI-powered analysis, and comprehensive market intelligence.
+            The first <span className="font-bold text-blue-600">centralized data room</span> for Egypt&apos;s private sector. 
+            <br className="hidden sm:block" />Real-time insights, AI-powered analysis, and comprehensive market intelligence.
           </motion.p>
 
           {/* Stats */}
@@ -242,23 +242,23 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className=&quot;grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-12 md:mb-16 max-w-4xl mx-auto&quot;
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-12 md:mb-16 max-w-4xl mx-auto"
           >
-            <div className=&quot;text-center&quot;>
-              <div className=&quot;text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2&quot;>5M+</div>
-              <div className=&quot;text-gray-600 font-medium text-sm md:text-base&quot;>Data Points</div>
+            <div className="text-center">
+              <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2">5M+</div>
+              <div className="text-gray-600 font-medium text-sm md:text-base">Data Points</div>
             </div>
-            <div className=&quot;text-center&quot;>
-              <div className=&quot;text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2&quot;>8</div>
-              <div className=&quot;text-gray-600 font-medium text-sm md:text-base&quot;>Sectors</div>
+            <div className="text-center">
+              <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2">8</div>
+              <div className="text-gray-600 font-medium text-sm md:text-base">Sectors</div>
             </div>
-            <div className=&quot;text-center&quot;>
-              <div className=&quot;text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2&quot;>500+</div>
-              <div className=&quot;text-gray-600 font-medium text-sm md:text-base&quot;>Early Users</div>
+            <div className="text-center">
+              <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2">500+</div>
+              <div className="text-gray-600 font-medium text-sm md:text-base">Early Users</div>
             </div>
-            <div className=&quot;text-center&quot;>
-              <div className=&quot;text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2&quot;>24/7</div>
-              <div className=&quot;text-gray-600 font-medium text-sm md:text-base&quot;>Updates</div>
+            <div className="text-center">
+              <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2">24/7</div>
+              <div className="text-gray-600 font-medium text-sm md:text-base">Updates</div>
             </div>
           </motion.div>
 
@@ -267,72 +267,72 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className=&quot;space-y-4 md:space-y-6&quot;
+            className="space-y-4 md:space-y-6"
           >
             <button 
               onClick={() => document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' })}
-              className=&quot;bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 md:px-16 py-4 md:py-6 rounded-2xl font-bold text-lg md:text-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 md:hover:-translate-y-2 hover:scale-105 w-full sm:w-auto&quot;
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 md:px-16 py-4 md:py-6 rounded-2xl font-bold text-lg md:text-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 md:hover:-translate-y-2 hover:scale-105 w-full sm:w-auto"
             >
               Get Early Access Now
             </button>
-            <p className=&quot;text-gray-500 text-sm md:text-lg px-4&quot;>Join 500+ founders, investors, and policymakers already on the waitlist</p>
+            <p className="text-gray-500 text-sm md:text-lg px-4">Join 500+ founders, investors, and policymakers already on the waitlist</p>
           </motion.div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id=&quot;features&quot; className=&quot;py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-white&quot;>
-        <div className=&quot;max-w-6xl mx-auto&quot;>
+      <section id="features" className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-6xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className=&quot;text-center mb-12 md:mb-16&quot;
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className=&quot;text-3xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6&quot;>Powerful Features</h2>
-            <p className=&quot;text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4&quot;>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6">Powerful Features</h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               Everything you need to make data-driven decisions for Egypt&apos;s market
             </p>
           </motion.div>
 
-          <div className=&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8&quot;>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 icon: BarChart3,
-                title: &quot;Live Dashboards&quot;,
-                description: &quot;Real-time data across 8 sectors with interactive visualizations&quot;,
-                color: &quot;from-blue-500 to-blue-600&quot;
+                title: "Live Dashboards",
+                description: "Real-time data across 8 sectors with interactive visualizations",
+                color: "from-blue-500 to-blue-600"
               },
               {
                 icon: Brain,
-                title: &quot;AI Assistant&quot;,
-                description: &quot;Ask questions in natural language and get instant insights&quot;,
-                color: &quot;from-purple-500 to-purple-600&quot;
+                title: "AI Assistant",
+                description: "Ask questions in natural language and get instant insights",
+                color: "from-purple-500 to-purple-600"
               },
               {
                 icon: Map,
-                title: &quot;Economic Maps&quot;,
-                description: &quot;Interactive GIS maps showing economic activity across Egypt&quot;,
-                color: &quot;from-green-500 to-green-600&quot;
+                title: "Economic Maps",
+                description: "Interactive GIS maps showing economic activity across Egypt",
+                color: "from-green-500 to-green-600"
               },
               {
                 icon: Globe,
-                title: &quot;Trade Flows&quot;,
-                description: &quot;Live trade data and import/export analytics&quot;,
-                color: &quot;from-orange-500 to-orange-600&quot;
+                title: "Trade Flows",
+                description: "Live trade data and import/export analytics",
+                color: "from-orange-500 to-orange-600"
               },
               {
                 icon: TrendingUp,
-                title: &quot;Benchmarking&quot;,
-                description: &quot;Compare performance against industry standards&quot;,
-                color: &quot;from-red-500 to-red-600&quot;
+                title: "Benchmarking",
+                description: "Compare performance against industry standards",
+                color: "from-red-500 to-red-600"
               },
               {
                 icon: Shield,
-                title: &quot;Secure Access&quot;,
-                description: &quot;Enterprise-grade security with role-based permissions&quot;,
-                color: &quot;from-indigo-500 to-indigo-600&quot;
+                title: "Secure Access",
+                description: "Enterprise-grade security with role-based permissions",
+                color: "from-indigo-500 to-indigo-600"
               }
             ].map((feature, index) => (
               <motion.div
@@ -341,13 +341,13 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className=&quot;bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-gray-200 group&quot;
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-gray-200 group"
               >
                 <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <feature.icon className=&quot;w-8 h-8 text-white&quot; />
+                  <feature.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className=&quot;text-xl font-bold text-gray-900 mb-4&quot;>{feature.title}</h3>
-                <p className=&quot;text-gray-600 leading-relaxed&quot;>{feature.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -355,98 +355,98 @@ export default function Home() {
       </section>
 
       {/* Problem Section */}
-      <section className=&quot;py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-gray-50 to-blue-50&quot;>
-        <div className=&quot;max-w-4xl mx-auto text-center&quot;>
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-gray-50 to-blue-50">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className=&quot;text-4xl font-bold text-gray-900 mb-6&quot;>The Problem We&apos;re Solving</h2>
-            <p className=&quot;text-xl text-gray-600 mb-12 max-w-3xl mx-auto&quot;>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">The Problem We&apos;re Solving</h2>
+            <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
               Egypt&apos;s market data is scattered across 30+ agencies, outdated, and inaccessible to the private sector.
             </p>
             
-            <div className=&quot;grid md:grid-cols-3 gap-8 mb-12&quot;>
-              <div className=&quot;bg-white rounded-2xl p-6 shadow-lg&quot;>
-                <div className=&quot;w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4&quot;>
-                  <BarChart3 className=&quot;w-6 h-6 text-red-600&quot; />
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-white rounded-2xl p-6 shadow-lg">
+                <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <BarChart3 className="w-6 h-6 text-red-600" />
                 </div>
-                <h3 className=&quot;font-bold text-gray-900 mb-2&quot;>Fragmented Data</h3>
-                <p className=&quot;text-gray-600 text-sm&quot;>Scattered across 30+ agencies</p>
+                <h3 className="font-bold text-gray-900 mb-2">Fragmented Data</h3>
+                <p className="text-gray-600 text-sm">Scattered across 30+ agencies</p>
               </div>
-              <div className=&quot;bg-white rounded-2xl p-6 shadow-lg&quot;>
-                <div className=&quot;w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4&quot;>
-                  <Wrench className=&quot;w-6 h-6 text-red-600&quot; />
+              <div className="bg-white rounded-2xl p-6 shadow-lg">
+                <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Wrench className="w-6 h-6 text-red-600" />
                 </div>
-                <h3 className=&quot;font-bold text-gray-900 mb-2&quot;>Outdated Information</h3>
-                <p className=&quot;text-gray-600 text-sm&quot;>Only PDFs and static tables</p>
+                <h3 className="font-bold text-gray-900 mb-2">Outdated Information</h3>
+                <p className="text-gray-600 text-sm">Only PDFs and static tables</p>
               </div>
-              <div className=&quot;bg-white rounded-2xl p-6 shadow-lg&quot;>
-                <div className=&quot;w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4&quot;>
-                  <Users className=&quot;w-6 h-6 text-red-600&quot; />
+              <div className="bg-white rounded-2xl p-6 shadow-lg">
+                <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-6 h-6 text-red-600" />
                 </div>
-                <h3 className=&quot;font-bold text-gray-900 mb-2&quot;>No Unified Source</h3>
-                <p className=&quot;text-gray-600 text-sm&quot;>Everyone operates in silos</p>
+                <h3 className="font-bold text-gray-900 mb-2">No Unified Source</h3>
+                <p className="text-gray-600 text-sm">Everyone operates in silos</p>
               </div>
             </div>
 
-            <div className=&quot;bg-white rounded-2xl p-8 shadow-xl border-l-4 border-blue-500&quot;>
-              <p className=&quot;text-gray-700 text-xl font-medium mb-4&quot;>
+            <div className="bg-white rounded-2xl p-8 shadow-xl border-l-4 border-blue-500">
+              <p className="text-gray-700 text-xl font-medium mb-4">
                 &quot;We need a single source of truth for Egypt&apos;s market intelligence.&quot;
               </p>
-              <p className=&quot;text-gray-500&quot;>— Founders, VCs, and Policymakers</p>
+              <p className="text-gray-500">— Founders, VCs, and Policymakers</p>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id=&quot;about&quot; className=&quot;py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-50&quot;>
-        <div className=&quot;max-w-6xl mx-auto&quot;>
+      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div className="max-w-6xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className=&quot;text-center mb-16&quot;
+            className="text-center mb-16"
           >
-            <h2 className=&quot;text-5xl font-bold text-gray-900 mb-6&quot;>About Arqam</h2>
-            <p className=&quot;text-xl text-gray-600 max-w-3xl mx-auto&quot;>
+            <h2 className="text-5xl font-bold text-gray-900 mb-6">About Arqam</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Built by Egypt&apos;s leading data company, Entlaq
             </p>
           </motion.div>
 
-          <div className=&quot;grid lg:grid-cols-2 gap-12 items-center&quot;>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className=&quot;bg-white rounded-3xl p-8 shadow-xl&quot;>
-                <div className=&quot;flex items-center space-x-4 mb-6&quot;>
-                  <div className=&quot;w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center&quot;>
-                    <span className=&quot;text-white font-bold text-2xl&quot;>q</span>
+              <div className="bg-white rounded-3xl p-8 shadow-xl">
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center">
+                    <span className="text-white font-bold text-2xl">q</span>
                   </div>
                   <div>
-                    <h3 className=&quot;text-2xl font-bold text-gray-900&quot;>Entlaq</h3>
-                    <p className=&quot;text-gray-600&quot;>Egypt&apos;s Leading Data Company</p>
+                    <h3 className="text-2xl font-bold text-gray-900">Entlaq</h3>
+                    <p className="text-gray-600">Egypt&apos;s Leading Data Company</p>
                   </div>
                 </div>
-                <p className=&quot;text-gray-700 text-lg leading-relaxed mb-6&quot;>
+                <p className="text-gray-700 text-lg leading-relaxed mb-6">
                   With years of experience in data collection, analysis, and visualization, 
                   Entlaq is uniquely positioned to create Egypt&apos;s first centralized market intelligence platform.
                 </p>
-                <div className=&quot;grid grid-cols-2 gap-4&quot;>
-                  <div className=&quot;text-center&quot;>
-                    <div className=&quot;text-3xl font-bold text-blue-600 mb-1&quot;>5+</div>
-                    <div className=&quot;text-gray-600 text-sm&quot;>Years Experience</div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-blue-600 mb-1">5+</div>
+                    <div className="text-gray-600 text-sm">Years Experience</div>
                   </div>
-                  <div className=&quot;text-center&quot;>
-                    <div className=&quot;text-3xl font-bold text-blue-600 mb-1&quot;>100+</div>
-                    <div className=&quot;text-gray-600 text-sm&quot;>Data Sources</div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-blue-600 mb-1">100+</div>
+                    <div className="text-gray-600 text-sm">Data Sources</div>
                   </div>
                 </div>
               </div>
@@ -457,32 +457,32 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className=&quot;space-y-6&quot;
+              className="space-y-6"
             >
-              <div className=&quot;bg-white rounded-2xl p-6 shadow-lg&quot;>
-                <h4 className=&quot;font-bold text-gray-900 mb-3 flex items-center&quot;>
-                  <CheckCircle className=&quot;w-5 h-5 text-green-500 mr-2&quot; />
+              <div className="bg-white rounded-2xl p-6 shadow-lg">
+                <h4 className="font-bold text-gray-900 mb-3 flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
                   Our Mission
                 </h4>
-                <p className=&quot;text-gray-600&quot;>
+                <p className="text-gray-600">
                   Democratize access to Egypt&apos;s market data and empower decision-makers with real-time insights.
                 </p>
               </div>
-              <div className=&quot;bg-white rounded-2xl p-6 shadow-lg&quot;>
-                <h4 className=&quot;font-bold text-gray-900 mb-3 flex items-center&quot;>
-                  <CheckCircle className=&quot;w-5 h-5 text-green-500 mr-2&quot; />
+              <div className="bg-white rounded-2xl p-6 shadow-lg">
+                <h4 className="font-bold text-gray-900 mb-3 flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
                   Our Vision
                 </h4>
-                <p className=&quot;text-gray-600&quot;>
+                <p className="text-gray-600">
                   Become the single source of truth for Egypt&apos;s market intelligence and economic data.
                 </p>
               </div>
-              <div className=&quot;bg-white rounded-2xl p-6 shadow-lg&quot;>
-                <h4 className=&quot;font-bold text-gray-900 mb-3 flex items-center&quot;>
-                  <CheckCircle className=&quot;w-5 h-5 text-green-500 mr-2&quot; />
+              <div className="bg-white rounded-2xl p-6 shadow-lg">
+                <h4 className="font-bold text-gray-900 mb-3 flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
                   Our Values
                 </h4>
-                <p className=&quot;text-gray-600&quot;>
+                <p className="text-gray-600">
                   Transparency, accuracy, and accessibility in everything we do.
                 </p>
               </div>
@@ -492,49 +492,49 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id=&quot;contact&quot; className=&quot;py-20 px-4 sm:px-6 lg:px-8 bg-white&quot;>
-        <div className=&quot;max-w-4xl mx-auto text-center&quot;>
+      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className=&quot;text-5xl font-bold text-gray-900 mb-6&quot;>Get in Touch</h2>
-            <p className=&quot;text-xl text-gray-600 mb-12 max-w-2xl mx-auto&quot;>
-              Have questions about Arqam? We'd love to hear from you.
+            <h2 className="text-5xl font-bold text-gray-900 mb-6">Get in Touch</h2>
+            <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+              Have questions about Arqam? We&apos;d love to hear from you.
             </p>
 
-            <div className=&quot;grid md:grid-cols-3 gap-8&quot;>
-              <div className=&quot;bg-gray-50 rounded-2xl p-8&quot;>
-                <div className=&quot;w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4&quot;>
-                  <User className=&quot;w-6 h-6 text-blue-600&quot; />
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-gray-50 rounded-2xl p-8">
+                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <User className="w-6 h-6 text-blue-600" />
                 </div>
-                <h3 className=&quot;font-bold text-gray-900 mb-2&quot;>General Inquiries</h3>
-                <p className=&quot;text-gray-600 text-sm mb-4&quot;>Questions about features or pricing</p>
-                <a href=&quot;mailto:hello@arqam.ai&quot; className=&quot;text-blue-600 font-medium hover:text-blue-700&quot;>
+                <h3 className="font-bold text-gray-900 mb-2">General Inquiries</h3>
+                <p className="text-gray-600 text-sm mb-4">Questions about features or pricing</p>
+                <a href="mailto:hello@arqam.ai" className="text-blue-600 font-medium hover:text-blue-700">
                   hello@arqam.ai
                 </a>
               </div>
 
-              <div className=&quot;bg-gray-50 rounded-2xl p-8&quot;>
-                <div className=&quot;w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4&quot;>
-                  <Rocket className=&quot;w-6 h-6 text-green-600&quot; />
+              <div className="bg-gray-50 rounded-2xl p-8">
+                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Rocket className="w-6 h-6 text-green-600" />
                 </div>
-                <h3 className=&quot;font-bold text-gray-900 mb-2&quot;>Early Access</h3>
-                <p className=&quot;text-gray-600 text-sm mb-4&quot;>Priority access and updates</p>
-                <a href=&quot;mailto:early@arqam.ai&quot; className=&quot;text-green-600 font-medium hover:text-green-700&quot;>
+                <h3 className="font-bold text-gray-900 mb-2">Early Access</h3>
+                <p className="text-gray-600 text-sm mb-4">Priority access and updates</p>
+                <a href="mailto:early@arqam.ai" className="text-green-600 font-medium hover:text-green-700">
                   early@arqam.ai
                 </a>
               </div>
 
-              <div className=&quot;bg-gray-50 rounded-2xl p-8&quot;>
-                <div className=&quot;w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4&quot;>
-                  <Users className=&quot;w-6 h-6 text-purple-600&quot; />
+              <div className="bg-gray-50 rounded-2xl p-8">
+                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-6 h-6 text-purple-600" />
                 </div>
-                <h3 className=&quot;font-bold text-gray-900 mb-2&quot;>Partnerships</h3>
-                <p className=&quot;text-gray-600 text-sm mb-4&quot;>Data partnerships and integrations</p>
-                <a href=&quot;mailto:partners@arqam.ai&quot; className=&quot;text-purple-600 font-medium hover:text-purple-700&quot;>
+                <h3 className="font-bold text-gray-900 mb-2">Partnerships</h3>
+                <p className="text-gray-600 text-sm mb-4">Data partnerships and integrations</p>
+                <a href="mailto:partners@arqam.ai" className="text-purple-600 font-medium hover:text-purple-700">
                   partners@arqam.ai
                 </a>
               </div>
@@ -544,17 +544,17 @@ export default function Home() {
       </section>
 
       {/* Signup Section - Enhanced */}
-      <section id=&quot;signup&quot; className=&quot;py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-100&quot;>
-        <div className=&quot;max-w-2xl mx-auto text-center&quot;>
+      <section id="signup" className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="max-w-2xl mx-auto text-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className=&quot;bg-white rounded-2xl md:rounded-3xl shadow-2xl p-6 md:p-8 lg:p-12&quot;>
-              <h2 className=&quot;text-3xl md:text-4xl font-bold text-gray-900 mb-4&quot;>Get Early Access</h2>
-              <p className=&quot;text-lg md:text-xl text-gray-600 mb-6 md:mb-8 px-4&quot;>
+            <div className="bg-white rounded-2xl md:rounded-3xl shadow-2xl p-6 md:p-8 lg:p-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get Early Access</h2>
+              <p className="text-lg md:text-xl text-gray-600 mb-6 md:mb-8 px-4">
                 Join 500+ founders, investors, and policymakers already on the waitlist
               </p>
 
@@ -562,64 +562,64 @@ export default function Home() {
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className=&quot;bg-green-50 border border-green-200 rounded-2xl p-8&quot;
+                  className="bg-green-50 border border-green-200 rounded-2xl p-8"
                 >
-                  <CheckCircle className=&quot;w-16 h-16 text-green-500 mx-auto mb-4&quot; />
-                  <h3 className=&quot;text-2xl font-bold text-green-900 mb-2&quot;>You're in!</h3>
-                  <p className=&quot;text-green-700&quot;>We'll notify you when early access opens.</p>
+                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold text-green-900 mb-2">You&apos;re in!</h3>
+                  <p className="text-green-700">We&apos;ll notify you when early access opens.</p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className=&quot;space-y-4 md:space-y-6&quot;>
-                  <div className=&quot;grid grid-cols-1 md:grid-cols-2 gap-4&quot;>
+                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <input
-                      type=&quot;text&quot;
-                      name=&quot;name&quot;
-                      placeholder=&quot;Full Name&quot;
+                      type="text"
+                      name="name"
+                      placeholder="Full Name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className=&quot;w-full px-4 md:px-6 py-3 md:py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base md:text-lg text-gray-900 placeholder-gray-500 bg-white&quot;
+                      className="w-full px-4 md:px-6 py-3 md:py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base md:text-lg text-gray-900 placeholder-gray-500 bg-white"
                     />
                     <input
-                      type=&quot;email&quot;
-                      name=&quot;email&quot;
-                      placeholder=&quot;Email Address&quot;
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className=&quot;w-full px-4 md:px-6 py-3 md:py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base md:text-lg text-gray-900 placeholder-gray-500 bg-white&quot;
+                      className="w-full px-4 md:px-6 py-3 md:py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base md:text-lg text-gray-900 placeholder-gray-500 bg-white"
                     />
                   </div>
                   
                   <select
-                    name=&quot;role&quot;
+                    name="role"
                     value={formData.role}
                     onChange={handleInputChange}
-                    className=&quot;w-full px-4 md:px-6 py-3 md:py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base md:text-lg text-gray-900 bg-white&quot;
+                    className="w-full px-4 md:px-6 py-3 md:py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base md:text-lg text-gray-900 bg-white"
                   >
-                    <option value=&quot;Founder&quot;>Founder</option>
-                    <option value=&quot;Government&quot;>Government Official</option>
-                    <option value=&quot;Researcher&quot;>Researcher</option>
-                    <option value=&quot;Investor&quot;>Investor</option>
-                    <option value=&quot;Other&quot;>Other</option>
+                    <option value="Founder">Founder</option>
+                    <option value="Government">Government Official</option>
+                    <option value="Researcher">Researcher</option>
+                    <option value="Investor">Investor</option>
+                    <option value="Other">Other</option>
                   </select>
                   
                   <textarea
-                    name=&quot;notes&quot;
-                    placeholder=&quot;What are you most excited about? (optional)&quot;
+                    name="notes"
+                    placeholder="What are you most excited about? (optional)"
                     value={formData.notes}
                     onChange={handleInputChange}
                     rows={3}
-                    className=&quot;w-full px-4 md:px-6 py-3 md:py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none text-base md:text-lg text-gray-900 placeholder-gray-500 bg-white&quot;
+                    className="w-full px-4 md:px-6 py-3 md:py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none text-base md:text-lg text-gray-900 placeholder-gray-500 bg-white"
                   />
                   
                   <button
-                    type=&quot;submit&quot;
-                    className=&quot;w-full bg-blue-600 text-white px-6 md:px-8 py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg hover:bg-blue-700 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1&quot;
+                    type="submit"
+                    className="w-full bg-blue-600 text-white px-6 md:px-8 py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg hover:bg-blue-700 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
                   >
                     Join the Waitlist
                   </button>
                   
-                  <p className=&quot;text-xs md:text-sm text-gray-500 px-4&quot;>
+                  <p className="text-xs md:text-sm text-gray-500 px-4">
                     Free early access • No spam • Unsubscribe anytime
                   </p>
                 </form>
@@ -630,20 +630,20 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className=&quot;bg-blue-900 text-white py-12 px-4 sm:px-6 lg:px-8&quot;>
-        <div className=&quot;max-w-6xl mx-auto&quot;>
-          <div className=&quot;flex flex-col md:flex-row justify-between items-center&quot;>
-            <div className=&quot;flex items-center space-x-2 mb-4 md:mb-0&quot;>
-              <div className=&quot;w-8 h-8 bg-white rounded-lg flex items-center justify-center&quot;>
-                <span className=&quot;text-blue-900 font-bold text-sm&quot;>q</span>
+      <footer className="bg-blue-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center space-x-2 mb-4 md:mb-0">
+              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                <span className="text-blue-900 font-bold text-sm">q</span>
               </div>
-              <span className=&quot;text-xl font-bold&quot;>Arqam by Entlaq</span>
+              <span className="text-xl font-bold">Arqam by Entlaq</span>
             </div>
-            <div className=&quot;text-center md:text-right&quot;>
-              <p className=&quot;text-blue-200 mb-2&quot;>© 2025 Arqam by Entlaq. All rights reserved.</p>
-              <div className=&quot;flex justify-center md:justify-end space-x-6 text-sm&quot;>
-                <a href=&quot;#&quot; className=&quot;text-blue-200 hover:text-white transition-colors&quot;>Privacy Policy</a>
-                <a href=&quot;#&quot; className=&quot;text-blue-200 hover:text-white transition-colors&quot;>Terms of Service</a>
+            <div className="text-center md:text-right">
+              <p className="text-blue-200 mb-2">© 2025 Arqam by Entlaq. All rights reserved.</p>
+              <div className="flex justify-center md:justify-end space-x-6 text-sm">
+                <a href="#" className="text-blue-200 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" className="text-blue-200 hover:text-white transition-colors">Terms of Service</a>
               </div>
             </div>
           </div>
@@ -651,8 +651,8 @@ export default function Home() {
       </footer>
 
       {/* Help Button */}
-      <button className=&quot;fixed bottom-6 right-6 w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-gray-700 transition-colors duration-200&quot;>
-        <span className=&quot;text-lg&quot;>?</span>
+      <button className="fixed bottom-6 right-6 w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-gray-700 transition-colors duration-200">
+        <span className="text-lg">?</span>
       </button>
     </div>
   );

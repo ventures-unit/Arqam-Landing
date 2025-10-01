@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     // Get client IP for rate limiting
     const forwarded = request.headers.get('x-forwarded-for')
-    const ip = forwarded ? forwarded.split(',')[0] : request.ip || 'unknown'
+    const ip = forwarded ? forwarded.split(',')[0] : 'unknown'
     
     // Check rate limit (5 requests per minute per IP)
     if (!checkRateLimit(ip, 5, 60000)) {

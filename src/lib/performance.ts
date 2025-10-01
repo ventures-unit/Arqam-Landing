@@ -8,12 +8,12 @@ export function trackWebVitals() {
   if (typeof window === 'undefined') return;
 
   // Import web-vitals dynamically to avoid SSR issues
-  import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-    getCLS(sendToAnalytics);
-    getFID(sendToAnalytics);
-    getFCP(sendToAnalytics);
-    getLCP(sendToAnalytics);
-    getTTFB(sendToAnalytics);
+  import('web-vitals').then(({ onCLS, onINP, onFCP, onLCP, onTTFB }) => {
+    onCLS(sendToAnalytics);
+    onINP(sendToAnalytics);
+    onFCP(sendToAnalytics);
+    onLCP(sendToAnalytics);
+    onTTFB(sendToAnalytics);
   });
 }
 
@@ -22,8 +22,8 @@ export function trackWebVitals() {
  */
 function sendToAnalytics(metric: { name: string; value: number; id: string }) {
   // Send to Google Analytics if available
-  if (typeof gtag !== 'undefined') {
-    gtag('event', metric.name, {
+  if (typeof window !== 'undefined' && 'gtag' in window) {
+    (window as Window & { gtag: (command: string, action: string, params: Record<string, unknown>) => void }).gtag('event', metric.name, {
       event_category: 'Web Vitals',
       value: Math.round(metric.value),
       event_label: metric.id,
@@ -165,25 +165,25 @@ export function monitorCoreWebVitals() {
     });
   }).observe({ entryTypes: ['largest-contentful-paint'] });
 
-  // Track FID (First Input Delay)
+  // Track INP (Interaction to Next Paint) - replaces FID
   new PerformanceObserver((entryList) => {
     const entries = entryList.getEntries();
     entries.forEach(entry => {
       sendToAnalytics({
-        name: 'FID',
-        value: entry.processingStart - entry.startTime,
-        id: 'fid-' + Date.now()
+        name: 'INP',
+        value: entry.duration,
+        id: 'inp-' + Date.now()
       });
     });
-  }).observe({ entryTypes: ['first-input'] });
+  }).observe({ entryTypes: ['event'] });
 
   // Track CLS (Cumulative Layout Shift)
   let clsValue = 0;
   new PerformanceObserver((entryList) => {
     const entries = entryList.getEntries();
     entries.forEach(entry => {
-      if (!entry.hadRecentInput) {
-        clsValue += entry.value;
+      if (!(entry as PerformanceEntry & { hadRecentInput?: boolean; value?: number }).hadRecentInput) {
+        clsValue += (entry as PerformanceEntry & { value: number }).value;
       }
     });
     sendToAnalytics({

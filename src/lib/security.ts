@@ -9,7 +9,7 @@ const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 export interface ValidationResult {
   isValid: boolean;
   errors: string[];
-  sanitizedData?: any;
+  sanitizedData?: Record<string, unknown>;
 }
 
 /**
@@ -20,7 +20,7 @@ export function validateInput(data: Record<string, unknown>): ValidationResult {
   const sanitizedData: Record<string, unknown> = {};
 
   // Email validation
-  if (!data.email) {
+  if (!data.email || typeof data.email !== 'string') {
     errors.push('Email is required');
   } else {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -34,7 +34,7 @@ export function validateInput(data: Record<string, unknown>): ValidationResult {
   }
 
   // Name validation
-  if (!data.name) {
+  if (!data.name || typeof data.name !== 'string') {
     errors.push('Name is required');
   } else {
     const name = data.name.trim();
@@ -51,14 +51,14 @@ export function validateInput(data: Record<string, unknown>): ValidationResult {
 
   // Role validation
   const validRoles = ['Founder', 'Government', 'Researcher', 'Investor', 'Other'];
-  if (!data.role || !validRoles.includes(data.role)) {
+  if (!data.role || typeof data.role !== 'string' || !validRoles.includes(data.role)) {
     errors.push('Please select a valid role');
   } else {
     sanitizedData.role = data.role;
   }
 
   // Notes validation (optional)
-  if (data.notes) {
+  if (data.notes && typeof data.notes === 'string') {
     const notes = data.notes.trim();
     if (notes.length > 1000) {
       errors.push('Notes must be less than 1000 characters');

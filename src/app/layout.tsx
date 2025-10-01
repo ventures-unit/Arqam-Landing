@@ -31,9 +31,8 @@ export const metadata: Metadata = {
     description: "The first centralized data room for Egypt's private sector. Real-time insights, AI-powered analysis, and comprehensive market intelligence.",
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: '/api/favicon?v=2',
     apple: '/apple-touch-icon.png',
-    shortcut: '/favicon.ico',
   },
 };
 
@@ -45,10 +44,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/api/favicon?v=2" type="image/png" />
+        <link rel="shortcut icon" href="/api/favicon?v=2" type="image/png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body

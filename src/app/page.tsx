@@ -73,6 +73,7 @@ export default function Home() {
           width={450}
           height={112}
           className="h-24 sm:h-32 md:h-36 lg:h-48 w-auto"
+          priority
         />
       </div>
 
@@ -532,6 +533,8 @@ export default function Home() {
                 width={320}
                 height={80}
                 className="h-80 w-auto"
+                style={{ width: 'auto', height: 'auto' }}
+                priority
               />
             </div>
             <div className="text-center md:text-right">

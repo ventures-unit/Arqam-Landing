@@ -8,9 +8,9 @@
   "theme_color": "#2563eb",
   "icons": [
     {
-      "src": "/favicon.ico",
+      "src": "/images/arqam-blue.png",
       "sizes": "any",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
       "src": "/apple-touch-icon.png",

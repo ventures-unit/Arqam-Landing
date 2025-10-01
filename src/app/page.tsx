@@ -19,45 +19,23 @@ import {
   Menu,
   X
 } from 'lucide-react';
+import DynamicCounter from '@/components/DynamicCounter';
+import MultiStepForm from '@/components/MultiStepForm';
 
 export default function Home() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    role: 'Founder',
-    notes: ''
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Enhanced validation
-    if (!formData.email || !formData.email.includes('@')) {
-      alert('Please enter a valid email address.');
-      return;
-    }
-
-    if (!formData.name || formData.name.trim().length < 2) {
-      alert('Please enter your full name.');
-      return;
-    }
-
+  const handleFormSubmit = async (data: any) => {
     try {
       const response = await fetch('/api/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(data),
       });
 
       const result = await response.json();
@@ -68,11 +46,10 @@ export default function Home() {
 
       // Success
       setIsSubmitted(true);
-      setFormData({ name: '', email: '', role: 'Founder', notes: '' });
       
     } catch (error: unknown) {
       console.error('Signup error:', error);
-      alert(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
+      setError(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
     }
   };
 
@@ -82,13 +59,14 @@ export default function Home() {
       <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 relative">
-            {/* Logo */}
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">q</span>
-              </div>
-              <span className="text-xl md:text-2xl font-bold text-blue-900">arqam</span>
-            </div>
+      {/* Logo */}
+      <div className="flex items-center space-x-3">
+        <img 
+          src="/images/arqam-blue.png" 
+          alt="Arqam Logo" 
+          className="h-40 w-auto"
+        />
+      </div>
 
             {/* Desktop Navigation - Absolutely Centered */}
             <div className="hidden lg:flex items-center absolute left-1/2 transform -translate-x-1/2">
@@ -104,12 +82,6 @@ export default function Home() {
                   className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
                 >
                   About
-                </button>
-                <button 
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
-                >
-                  Contact
                 </button>
               </div>
             </div>
@@ -170,15 +142,6 @@ export default function Home() {
                 </button>
                 <button 
                   onClick={() => {
-                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors"
-                >
-                  Contact
-                </button>
-                <button 
-                  onClick={() => {
                     document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
                     setIsMobileMenuOpen(false);
                   }}
@@ -231,31 +194,45 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600 mb-8 md:mb-12 max-w-4xl mx-auto leading-relaxed font-light px-4"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600 mb-6 md:mb-8 max-w-4xl mx-auto leading-relaxed font-light px-4"
           >
             The first <span className="font-bold text-blue-600">centralized data room</span> for Egypt&apos;s private sector. 
             <br className="hidden sm:block" />Real-time insights, AI-powered analysis, and comprehensive market intelligence.
           </motion.p>
+
+          {/* Early Access Limit Indicator */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mb-8 md:mb-12"
+          >
+            <div className="inline-flex items-center bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-full px-6 py-3 shadow-lg">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+                <span className="text-amber-800 font-semibold text-sm md:text-base">
+                  Early Access Limited to 750 People
+                </span>
+                <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                <span className="text-amber-700 text-sm md:text-base">
+                  Closing Soon
+                </span>
+              </div>
+            </div>
+          </motion.div>
 
           {/* Stats */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-12 md:mb-16 max-w-4xl mx-auto"
+            className="grid grid-cols-3 gap-4 md:gap-8 mb-12 md:mb-16 max-w-4xl mx-auto"
           >
             <div className="text-center">
               <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2">5M+</div>
               <div className="text-gray-600 font-medium text-sm md:text-base">Data Points</div>
             </div>
-            <div className="text-center">
-              <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2">8</div>
-              <div className="text-gray-600 font-medium text-sm md:text-base">Sectors</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2">500+</div>
-              <div className="text-gray-600 font-medium text-sm md:text-base">Early Users</div>
-            </div>
+            <DynamicCounter />
             <div className="text-center">
               <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2">24/7</div>
               <div className="text-gray-600 font-medium text-sm md:text-base">Updates</div>
@@ -301,7 +278,7 @@ export default function Home() {
               {
                 icon: BarChart3,
                 title: "Live Dashboards",
-                description: "Real-time data across 8 sectors with interactive visualizations",
+                description: "Real-time data with interactive visualizations",
                 color: "from-blue-500 to-blue-600"
               },
               {
@@ -402,230 +379,164 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-50">
-        <div className="max-w-6xl mx-auto">
+      {/* Strategic Foundations Section */}
+      <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-100/20 to-indigo-100/20"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-indigo-200/30 to-transparent rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto relative">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-5xl font-bold text-gray-900 mb-6">About Arqam</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built by Egypt&apos;s leading data company, Entlaq
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent mb-8 px-8 py-4">
+              Strategic Foundations
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-8 py-2">
+              The core principles that drive our mission to transform Egypt&apos;s data landscape
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-white rounded-3xl p-8 shadow-xl">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center">
-                    <span className="text-white font-bold text-2xl">q</span>
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Mission & Vision */}
+            <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="group relative"
+              >
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+                <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-4">
+                      <span className="text-white font-bold text-lg">M</span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">Mission</h3>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900">Entlaq</h3>
-                    <p className="text-gray-600">Egypt&apos;s Leading Data Company</p>
-                  </div>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    Our mission is to bridge Egypt&apos;s data gaps by building a high-integrity platform that delivers timely datasets. We empower policymakers, researchers, entrepreneurs, and development partners with the information they need to drive inclusive growth, innovation, and evidence-based decision-making.
+                  </p>
                 </div>
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                  With years of experience in data collection, analysis, and visualization, 
-                  Entlaq is uniquely positioned to create Egypt&apos;s first centralized market intelligence platform.
-                </p>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-blue-600 mb-1">5+</div>
-                    <div className="text-gray-600 text-sm">Years Experience</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-blue-600 mb-1">100+</div>
-                    <div className="text-gray-600 text-sm">Data Sources</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <div className="bg-white rounded-2xl p-6 shadow-lg">
-                <h4 className="font-bold text-gray-900 mb-3 flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  Our Mission
-                </h4>
-                <p className="text-gray-600">
-                  Democratize access to Egypt&apos;s market data and empower decision-makers with real-time insights.
-                </p>
-              </div>
-              <div className="bg-white rounded-2xl p-6 shadow-lg">
-                <h4 className="font-bold text-gray-900 mb-3 flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  Our Vision
-                </h4>
-                <p className="text-gray-600">
-                  Become the single source of truth for Egypt&apos;s market intelligence and economic data.
-                </p>
-              </div>
-              <div className="bg-white rounded-2xl p-6 shadow-lg">
-                <h4 className="font-bold text-gray-900 mb-3 flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  Our Values
-                </h4>
-                <p className="text-gray-600">
-                  Transparency, accuracy, and accessibility in everything we do.
-                </p>
-              </div>
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="group relative"
+              >
+                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+                <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
+                      <span className="text-white font-bold text-lg">V</span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">Vision</h3>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    To establish a trusted, AI-powered data room that curates, structures, and delivers actionable insights across entrepreneurship, investment, and economic development in Egypt by centralizing access to verified, cross-referenced knowledge.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Goal & Objective */}
+            <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="group relative"
+              >
+                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+                <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center mr-4">
+                      <span className="text-white font-bold text-lg">G</span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">Goal</h3>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    Create a centralized, AI-powered platform that transforms Egypt&apos;s fragmented data landscape into a unified, accessible, and actionable intelligence system for all stakeholders in the economic ecosystem.
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="group relative"
+              >
+                <div className="absolute -inset-1 bg-gradient-to-r from-amber-600 to-orange-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+                <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-600 rounded-xl flex items-center justify-center mr-4">
+                      <span className="text-white font-bold text-lg">O</span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">Objective</h3>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    Deliver real-time, verified market intelligence that enables data-driven decisions, fosters collaboration across sectors, and accelerates Egypt&apos;s economic development through comprehensive data accessibility and AI-powered insights.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-5xl font-bold text-gray-900 mb-6">Get in Touch</h2>
-            <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-              Have questions about Arqam? We&apos;d love to hear from you.
-            </p>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-gray-50 rounded-2xl p-8">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <User className="w-6 h-6 text-blue-600" />
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">General Inquiries</h3>
-                <p className="text-gray-600 text-sm mb-4">Questions about features or pricing</p>
-                <a href="mailto:hello@arqam.ai" className="text-blue-600 font-medium hover:text-blue-700">
-                  hello@arqam.ai
-                </a>
-              </div>
-
-              <div className="bg-gray-50 rounded-2xl p-8">
-                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Rocket className="w-6 h-6 text-green-600" />
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">Early Access</h3>
-                <p className="text-gray-600 text-sm mb-4">Priority access and updates</p>
-                <a href="mailto:early@arqam.ai" className="text-green-600 font-medium hover:text-green-700">
-                  early@arqam.ai
-                </a>
-              </div>
-
-              <div className="bg-gray-50 rounded-2xl p-8">
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-6 h-6 text-purple-600" />
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">Partnerships</h3>
-                <p className="text-gray-600 text-sm mb-4">Data partnerships and integrations</p>
-                <a href="mailto:partners@arqam.ai" className="text-purple-600 font-medium hover:text-purple-700">
-                  partners@arqam.ai
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Signup Section - Enhanced */}
+      {/* Signup Section - Multi-Step Form */}
       <section id="signup" className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="text-center mb-12"
           >
-            <div className="bg-white rounded-2xl md:rounded-3xl shadow-2xl p-6 md:p-8 lg:p-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get Early Access</h2>
-              <p className="text-lg md:text-xl text-gray-600 mb-6 md:mb-8 px-4">
-                Join 500+ founders, investors, and policymakers already on the waitlist
-              </p>
-
-              {isSubmitted ? (
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="bg-green-50 border border-green-200 rounded-2xl p-8"
-                >
-                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-green-900 mb-2">You&apos;re in!</h3>
-                  <p className="text-green-700">We&apos;ll notify you when early access opens.</p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Full Name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="w-full px-4 md:px-6 py-3 md:py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base md:text-lg text-gray-900 placeholder-gray-500 bg-white"
-                    />
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email Address"
-                      required
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full px-4 md:px-6 py-3 md:py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base md:text-lg text-gray-900 placeholder-gray-500 bg-white"
-                    />
-                  </div>
-                  
-                  <select
-                    name="role"
-                    value={formData.role}
-                    onChange={handleInputChange}
-                    className="w-full px-4 md:px-6 py-3 md:py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base md:text-lg text-gray-900 bg-white"
-                  >
-                    <option value="Founder">Founder</option>
-                    <option value="Government">Government Official</option>
-                    <option value="Researcher">Researcher</option>
-                    <option value="Investor">Investor</option>
-                    <option value="Other">Other</option>
-                  </select>
-                  
-                  <textarea
-                    name="notes"
-                    placeholder="What are you most excited about? (optional)"
-                    value={formData.notes}
-                    onChange={handleInputChange}
-                    rows={3}
-                    className="w-full px-4 md:px-6 py-3 md:py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none text-base md:text-lg text-gray-900 placeholder-gray-500 bg-white"
-                  />
-                  
-                  <button
-                    type="submit"
-                    className="w-full bg-blue-600 text-white px-6 md:px-8 py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg hover:bg-blue-700 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
-                  >
-                    Join the Waitlist
-                  </button>
-                  
-                  <p className="text-xs md:text-sm text-gray-500 px-4">
-                    Free early access • No spam • Unsubscribe anytime
-                  </p>
-                </form>
-              )}
-            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get Early Access</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Join the waitlist and be among the first to access Egypt&apos;s most comprehensive market intelligence platform
+            </p>
           </motion.div>
+
+          {isSubmitted ? (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 text-center"
+            >
+              <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-6" />
+              <h3 className="text-3xl font-bold text-green-900 mb-4">Application Submitted!</h3>
+              <p className="text-xl text-green-700 mb-6">
+                Thank you for your interest in Arqam. We&apos;ll review your application and notify you when early access opens.
+              </p>
+            </motion.div>
+          ) : (
+            <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 lg:p-12">
+              {error && (
+                <div className="mb-6 bg-red-50 border border-red-200 rounded-xl p-4">
+                  <p className="text-red-800 text-center">{error}</p>
+                </div>
+              )}
+              <MultiStepForm onSubmit={handleFormSubmit} isSubmitting={isSubmitting} />
+            </div>
+          )}
         </div>
       </section>
 
@@ -633,14 +544,15 @@ export default function Home() {
       <footer className="bg-blue-900 text-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-blue-900 font-bold text-sm">q</span>
-              </div>
-              <span className="text-xl font-bold">Arqam by Entlaq</span>
+            <div className="flex items-center space-x-3 mb-4 md:mb-0">
+              <img 
+                src="/images/arqam-white.png" 
+                alt="Arqam Logo" 
+                className="h-80 w-auto"
+              />
             </div>
             <div className="text-center md:text-right">
-              <p className="text-blue-200 mb-2">© 2025 Arqam by Entlaq. All rights reserved.</p>
+              <p className="text-blue-200 mb-2">© 2025 Arqam. All rights reserved.</p>
               <div className="flex justify-center md:justify-end space-x-6 text-sm">
                 <a href="#" className="text-blue-200 hover:text-white transition-colors">Privacy Policy</a>
                 <a href="#" className="text-blue-200 hover:text-white transition-colors">Terms of Service</a>

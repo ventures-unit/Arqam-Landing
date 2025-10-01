@@ -16,10 +16,26 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 // Database schema for arqam_signups table
 export interface SignupData {
   id?: string
-  name: string
+  // Section 1: Personal Information
+  fullName: string
   email: string
-  role: 'Founder' | 'Government' | 'Researcher' | 'Investor' | 'Other'
-  notes?: string
+  mobileNumber: string
+  nationality: string
+  
+  // Section 2: Professional Information
+  organizationName: string
+  organizationType: string
+  organizationTypeOther?: string
+  positionTitle: string
+  
+  // Section 3: Data Room Interests & Needs
+  interestedSectors: string[]
+  interestedSectorsOther?: string
+  interestedDatasets: string[]
+  interestedDatasetsOther?: string
+  dataUsage: string[]
+  dataUsageOther?: string
+  
   created_at?: string
 }
 
@@ -31,16 +47,58 @@ export async function submitSignup(data: Omit<SignupData, 'id' | 'created_at'>) 
       throw new Error('Please enter a valid email address.')
     }
 
-    if (!data.name || data.name.trim().length < 2) {
+    if (!data.fullName || data.fullName.trim().length < 2) {
       throw new Error('Please enter your full name.')
+    }
+
+    if (!data.mobileNumber || data.mobileNumber.trim().length < 5) {
+      throw new Error('Please enter a valid mobile number.')
+    }
+
+    if (!data.nationality || data.nationality.trim().length < 2) {
+      throw new Error('Please enter your nationality.')
+    }
+
+    if (!data.organizationName || data.organizationName.trim().length < 2) {
+      throw new Error('Please enter your organization name.')
+    }
+
+    if (!data.organizationType) {
+      throw new Error('Please select your organization type.')
+    }
+
+    if (!data.positionTitle || data.positionTitle.trim().length < 2) {
+      throw new Error('Please enter your position title.')
+    }
+
+    if (!data.interestedSectors || data.interestedSectors.length === 0) {
+      throw new Error('Please select at least one sector of interest.')
+    }
+
+    if (!data.interestedDatasets || data.interestedDatasets.length === 0) {
+      throw new Error('Please select at least one dataset type.')
+    }
+
+    if (!data.dataUsage || data.dataUsage.length === 0) {
+      throw new Error('Please select at least one usage type.')
     }
 
     // Sanitize inputs
     const sanitizedData = {
-      name: data.name.trim(),
+      full_name: data.fullName.trim(),
       email: data.email.trim().toLowerCase(),
-      role: data.role,
-      notes: data.notes?.trim() || null
+      mobile_number: data.mobileNumber.trim(),
+      nationality: data.nationality.trim(),
+      organization_name: data.organizationName.trim(),
+      organization_type: data.organizationType,
+      organization_type_other: data.organizationTypeOther?.trim() || null,
+      position_title: data.positionTitle.trim(),
+      interested_sectors: data.interestedSectors,
+      interested_sectors_other: data.interestedSectorsOther?.trim() || null,
+      interested_datasets: data.interestedDatasets,
+      interested_datasets_other: data.interestedDatasetsOther?.trim() || null,
+      data_usage: data.dataUsage,
+      data_usage_other: data.dataUsageOther?.trim() || null
     }
 
     console.log('Attempting to insert:', sanitizedData)

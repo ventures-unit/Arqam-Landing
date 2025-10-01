@@ -17,21 +17,16 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json()
     
-    // Validate required fields
-    if (!body.email || !body.name) {
+    // Validate required fields for new multi-step form
+    if (!body.email || !body.fullName) {
       return NextResponse.json(
-        { error: 'Name and email are required.' },
+        { error: 'Full name and email are required.' },
         { status: 400 }
       )
     }
 
-    // Submit to Supabase
-    const result = await submitSignup({
-      name: body.name,
-      email: body.email,
-      role: body.role || 'Founder',
-      notes: body.notes || null
-    })
+    // Submit to Supabase with new data structure
+    const result = await submitSignup(body)
 
     return NextResponse.json({ 
       success: true, 

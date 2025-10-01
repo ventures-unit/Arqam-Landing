@@ -400,31 +400,19 @@ export default function Home() {
         </div>
         
         <div className="max-w-7xl mx-auto relative">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.1 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
+          <div className="text-center mb-20">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent mb-8 px-8 py-4">
               Strategic Foundations
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-8 py-2">
               The core principles that drive our mission to transform Egypt&apos;s data landscape
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Mission & Vision */}
             <div className="space-y-8">
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.1 }}
-                viewport={{ once: true }}
-                className="group relative"
-              >
+              <div className="group relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
                 <div className="relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
                   <div className="flex items-center mb-4">
@@ -437,15 +425,9 @@ export default function Home() {
                     Bridge Egypt&apos;s data gaps with timely, high-integrity datasets for better decision-making.
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.1, delay: 0.05 }}
-                viewport={{ once: true }}
-                className="group relative"
-              >
+              <div className="group relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
                 <div className="relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
                   <div className="flex items-center mb-4">
@@ -458,18 +440,12 @@ export default function Home() {
                     A trusted, AI-powered data room delivering actionable insights across Egypt&apos;s economic landscape.
                   </p>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             {/* Goal & Objective */}
             <div className="space-y-8">
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.1, delay: 0.02 }}
-                viewport={{ once: true }}
-                className="group relative"
-              >
+              <div className="group relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
                 <div className="relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
                   <div className="flex items-center mb-4">
@@ -482,15 +458,9 @@ export default function Home() {
                     Transform Egypt&apos;s fragmented data into a unified, accessible intelligence system.
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.1, delay: 0.07 }}
-                viewport={{ once: true }}
-                className="group relative"
-              >
+              <div className="group relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-amber-600 to-orange-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
                 <div className="relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
                   <div className="flex items-center mb-4">
@@ -503,7 +473,7 @@ export default function Home() {
                     Deliver real-time market intelligence that accelerates Egypt&apos;s economic development.
                   </p>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>

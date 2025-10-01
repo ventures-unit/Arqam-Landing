@@ -63,9 +63,9 @@ export default function Home() {
         <Image 
           src="/images/arqam-blue.png" 
           alt="Arqam Logo" 
-          width={160}
-          height={40}
-          className="h-40 w-auto"
+          width={120}
+          height={30}
+          className="h-8 sm:h-10 md:h-12 lg:h-16 w-auto"
         />
       </div>
 
@@ -170,7 +170,7 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.3 }}
             className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full mb-6 md:mb-8 shadow-lg"
           >
             <Sparkles className="w-4 h-4 md:w-5 md:h-5" />
@@ -181,11 +181,11 @@ export default function Home() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-gray-900 mb-4 md:mb-6 leading-tight"
+            transition={{ duration: 0.3, delay: 0.1 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 md:mb-6 leading-tight px-2"
           >
             Egypt&apos;s Market Intelligence
-            <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mt-1 md:mt-2">
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mt-1 md:mt-2">
               Platform
             </span>
           </motion.h1>
@@ -194,8 +194,8 @@ export default function Home() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600 mb-6 md:mb-8 max-w-4xl mx-auto leading-relaxed font-light px-4"
+            transition={{ duration: 0.3, delay: 0.2 }}
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-6 md:mb-8 max-w-4xl mx-auto leading-relaxed font-light px-4"
           >
             The first <span className="font-bold text-blue-600">centralized data room</span> for Egypt&apos;s private sector. 
             <br className="hidden sm:block" />Real-time insights, AI-powered analysis, and comprehensive market intelligence.
@@ -205,19 +205,23 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.3, delay: 0.3 }}
             className="mb-8 md:mb-12"
           >
-            <div className="inline-flex items-center bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-full px-6 py-3 shadow-lg">
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
-                <span className="text-amber-800 font-semibold text-sm md:text-base">
-                  Early Access Limited to 750 People
-                </span>
-                <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
-                <span className="text-amber-700 text-sm md:text-base">
-                  Closing Soon
-                </span>
+            <div className="inline-flex items-center bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-full px-4 py-2 md:px-6 md:py-3 shadow-lg">
+              <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-2">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+                  <span className="text-amber-800 font-semibold text-xs sm:text-sm md:text-base">
+                    Early Access Limited to 750 People
+                  </span>
+                </div>
+                <div className="hidden sm:flex items-center space-x-2">
+                  <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                  <span className="text-amber-700 text-xs sm:text-sm md:text-base">
+                    Closing Soon
+                  </span>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -226,8 +230,8 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="grid grid-cols-3 gap-4 md:gap-8 mb-12 md:mb-16 max-w-4xl mx-auto"
+            transition={{ duration: 0.3, delay: 0.3 }}
+            className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8 mb-8 md:mb-16 max-w-4xl mx-auto px-4"
           >
             <div className="text-center">
               <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2">5M+</div>
@@ -244,12 +248,12 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            transition={{ duration: 0.3, delay: 0.4 }}
             className="space-y-4 md:space-y-6"
           >
             <button 
               onClick={() => document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 md:px-16 py-4 md:py-6 rounded-2xl font-bold text-lg md:text-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 md:hover:-translate-y-2 hover:scale-105 w-full sm:w-auto"
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 md:px-16 py-3 md:py-6 rounded-2xl font-bold text-base md:text-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 md:hover:-translate-y-2 hover:scale-105 w-full sm:w-auto"
             >
               Get Early Access Now
             </button>
@@ -264,7 +268,7 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.3 }}
             viewport={{ once: true }}
             className="text-center mb-12 md:mb-16"
           >
@@ -338,7 +342,7 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.3 }}
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">The Problem We&apos;re Solving</h2>
@@ -506,7 +510,7 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.3 }}
             viewport={{ once: true }}
             className="text-center mb-12"
           >

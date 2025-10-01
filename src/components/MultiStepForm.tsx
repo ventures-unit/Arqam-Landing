@@ -121,17 +121,29 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
       case 1:
         return formData.fullName && formData.email && formData.mobileNumber && formData.nationality
       case 2:
-        return formData.organizationName && formData.organizationType && formData.positionTitle
+        return formData.organizationName && formData.organizationType && formData.positionTitle &&
+               (formData.organizationType !== 'Other' || formData.organizationTypeOther)
       case 3:
-        return formData.interestedSectors.length > 0 && formData.interestedDatasets.length > 0 && formData.dataUsage.length > 0
+        return formData.interestedSectors.length > 0 && formData.interestedDatasets.length > 0 && formData.dataUsage.length > 0 &&
+               (!formData.interestedSectors.includes('Other') || formData.interestedSectorsOther) &&
+               (!formData.interestedDatasets.includes('Other') || formData.interestedDatasetsOther) &&
+               (!formData.dataUsage.includes('Other') || formData.dataUsageOther)
       default:
         return false
     }
   }
 
   const handleSubmit = async () => {
+    console.log('Submit button clicked')
+    console.log('Form data:', formData)
+    console.log('Step 3 valid:', isStepValid(3))
+    
     if (isStepValid(3)) {
+      console.log('Submitting form...')
       await onSubmit(formData)
+    } else {
+      console.log('Form validation failed')
+      alert('Please fill in all required fields before submitting.')
     }
   }
 

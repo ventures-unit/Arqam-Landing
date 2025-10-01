@@ -3,13 +3,12 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { 
   Sparkles, 
   Map, 
   Globe, 
   Wrench, 
-  Rocket,
-  User,
   BarChart3,
   Brain,
   Users,
@@ -25,10 +24,10 @@ import MultiStepForm from '@/components/MultiStepForm';
 export default function Home() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting] = useState(false);
   const [error, setError] = useState('');
 
-  const handleFormSubmit = async (data: any) => {
+  const handleFormSubmit = async (data: unknown) => {
     try {
       const response = await fetch('/api/signup', {
         method: 'POST',
@@ -61,9 +60,11 @@ export default function Home() {
           <div className="flex items-center justify-between h-16 relative">
       {/* Logo */}
       <div className="flex items-center space-x-3">
-        <img 
+        <Image 
           src="/images/arqam-blue.png" 
           alt="Arqam Logo" 
+          width={160}
+          height={40}
           className="h-40 w-auto"
         />
       </div>
@@ -545,9 +546,11 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <img 
+              <Image 
                 src="/images/arqam-white.png" 
                 alt="Arqam Logo" 
+                width={320}
+                height={80}
                 className="h-80 w-auto"
               />
             </div>

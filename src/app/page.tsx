@@ -272,9 +272,9 @@ export default function Home() {
       <section id="features" className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.1 }}
             viewport={{ once: true }}
             className="text-center mb-12 md:mb-16"
           >
@@ -325,12 +325,11 @@ export default function Home() {
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2, delay: index * 0.05, ease: "easeOut" }}
-                viewport={{ once: true, margin: "-50px" }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.1, delay: index * 0.02 }}
+                viewport={{ once: true }}
                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-gray-200 group"
-                style={{ willChange: 'opacity, transform' }}
               >
                 <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   <feature.icon className="w-8 h-8 text-white" />
@@ -402,9 +401,9 @@ export default function Home() {
         
         <div className="max-w-7xl mx-auto relative">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.1 }}
             viewport={{ once: true }}
             className="text-center mb-20"
           >
@@ -420,12 +419,11 @@ export default function Home() {
             {/* Mission & Vision */}
             <div className="space-y-8">
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                viewport={{ once: true, margin: "-50px" }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.1 }}
+                viewport={{ once: true }}
                 className="group relative"
-                style={{ willChange: 'opacity, transform' }}
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
                 <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
@@ -442,12 +440,11 @@ export default function Home() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
-                viewport={{ once: true, margin: "-50px" }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.1, delay: 0.05 }}
+                viewport={{ once: true }}
                 className="group relative"
-                style={{ willChange: 'opacity, transform' }}
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
                 <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
@@ -467,12 +464,11 @@ export default function Home() {
             {/* Goal & Objective */}
             <div className="space-y-8">
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: 0.05, ease: "easeOut" }}
-                viewport={{ once: true, margin: "-50px" }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.1, delay: 0.02 }}
+                viewport={{ once: true }}
                 className="group relative"
-                style={{ willChange: 'opacity, transform' }}
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
                 <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
@@ -489,12 +485,11 @@ export default function Home() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: 0.15, ease: "easeOut" }}
-                viewport={{ once: true, margin: "-50px" }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.1, delay: 0.07 }}
+                viewport={{ once: true }}
                 className="group relative"
-                style={{ willChange: 'opacity, transform' }}
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-amber-600 to-orange-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
                 <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">

@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { 
@@ -20,11 +20,18 @@ import {
 } from 'lucide-react';
 import DynamicCounter from '@/components/DynamicCounter';
 import MultiStepForm from '@/components/MultiStepForm';
+import { trackPageView, trackInteraction, trackWebVitals } from '@/lib/monitoring';
 
 export default function Home() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSubmitting] = useState(false);
+
+  // Initialize monitoring
+  useEffect(() => {
+    trackPageView('home');
+    trackWebVitals();
+  }, []);
   const [error, setError] = useState('');
 
   const handleFormSubmit = async (data: unknown) => {
@@ -258,7 +265,10 @@ export default function Home() {
             style={{ willChange: 'opacity, transform' }}
           >
             <button 
-              onClick={() => document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => {
+                trackInteraction('cta_click', 'get_early_access', { location: 'hero' });
+                document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 md:px-16 py-3 md:py-6 rounded-2xl font-bold text-base md:text-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 md:hover:-translate-y-2 hover:scale-105 w-full sm:w-auto"
             >
               Get Early Access Now

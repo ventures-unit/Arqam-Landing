@@ -1,0 +1,26 @@
+{
+  "name": "Arqam - Egypt's Market Intelligence Platform",
+  "short_name": "Arqam",
+  "description": "The first centralized data room for Egypt's private sector. Real-time insights, AI-powered analysis, and comprehensive market intelligence.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/arqam-blue.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

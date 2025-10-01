@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react'
+import { trackFormSubmission, trackInteraction } from '@/lib/monitoring'
 
 interface FormData {
   // Section 1: Personal Information
@@ -138,11 +139,36 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
     console.log('Form data:', formData)
     console.log('Step 3 valid:', isStepValid(3))
     
+    // Track form submission attempt
+    trackInteraction('form_submit_attempt', 'multi_step_form', {
+      step: currentStep,
+      form_data_keys: Object.keys(formData)
+    })
+    
     if (isStepValid(3)) {
       console.log('Submitting form...')
-      await onSubmit(formData)
+      try {
+        await onSubmit(formData)
+        // Track successful form submission
+        trackFormSubmission('early_access_signup', true)
+        trackInteraction('form_submit_success', 'multi_step_form', {
+          step: currentStep
+        })
+      } catch (error) {
+        // Track failed form submission
+        const errorMessage = error instanceof Error ? error.message : 'Something went wrong'
+        trackFormSubmission('early_access_signup', false, errorMessage)
+        trackInteraction('form_submit_error', 'multi_step_form', {
+          step: currentStep,
+          error: errorMessage
+        })
+        throw error // Re-throw to let parent handle
+      }
     } else {
       console.log('Form validation failed')
+      trackInteraction('form_validation_failed', 'multi_step_form', {
+        step: currentStep
+      })
       alert('Please fill in all required fields before submitting.')
     }
   }

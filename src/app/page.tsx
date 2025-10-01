@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -43,7 +44,7 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation
+    // Enhanced validation
     if (!formData.email || !formData.email.includes('@')) {
       alert('Please enter a valid email address.');
       return;

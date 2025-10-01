@@ -63,9 +63,9 @@ export default function Home() {
         <Image 
           src="/images/arqam-blue.png" 
           alt="Arqam Logo" 
-          width={300}
-          height={75}
-          className="h-16 sm:h-20 md:h-24 lg:h-32 w-auto"
+          width={450}
+          height={112}
+          className="h-24 sm:h-32 md:h-36 lg:h-48 w-auto"
         />
       </div>
 

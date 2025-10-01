@@ -361,7 +361,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
   )
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-0">
       {/* Progress Sections */}
       <div className="mb-12">
         <div className="flex items-center justify-center space-x-4">
@@ -401,12 +401,12 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex justify-between mt-12">
+      <div className="flex justify-between gap-2 sm:gap-4 mt-12">
         <button
           type="button"
           onClick={prevStep}
           disabled={currentStep === 1}
-          className="flex items-center space-x-2 px-8 py-4 text-gray-600 bg-gray-100 rounded-xl hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold"
+          className="flex items-center justify-center space-x-1 sm:space-x-2 px-3 sm:px-8 py-3 sm:py-4 text-gray-600 bg-gray-100 rounded-xl hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold text-sm sm:text-base flex-1 sm:flex-none"
         >
           <ChevronLeft className="w-5 h-5" />
           <span>Previous</span>
@@ -417,7 +417,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
             type="button"
             onClick={nextStep}
             disabled={!isStepValid(currentStep)}
-            className="flex items-center space-x-2 px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold shadow-lg hover:shadow-xl"
+            className="flex items-center justify-center space-x-1 sm:space-x-2 px-3 sm:px-8 py-3 sm:py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold shadow-lg hover:shadow-xl text-sm sm:text-base flex-1 sm:flex-none"
           >
             <span>Next</span>
             <ChevronRight className="w-5 h-5" />
@@ -427,7 +427,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
             type="button"
             onClick={handleSubmit}
             disabled={!isStepValid(3) || isSubmitting}
-            className="flex items-center space-x-2 px-10 py-4 bg-green-600 text-white rounded-xl hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold shadow-lg hover:shadow-xl"
+            className="flex items-center justify-center space-x-1 sm:space-x-2 px-3 sm:px-10 py-3 sm:py-4 bg-green-600 text-white rounded-xl hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold shadow-lg hover:shadow-xl text-sm sm:text-base flex-1 sm:flex-none"
           >
             {isSubmitting ? (
               <>
@@ -437,7 +437,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
             ) : (
               <>
                 <Check className="w-5 h-5" />
-                <span>Submit Application</span>
+                <span>Submit</span>
               </>
             )}
           </button>

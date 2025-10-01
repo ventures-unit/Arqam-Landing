@@ -63,9 +63,9 @@ export default function Home() {
         <Image 
           src="/images/arqam-blue.png" 
           alt="Arqam Logo" 
-          width={120}
-          height={30}
-          className="h-8 sm:h-10 md:h-12 lg:h-16 w-auto"
+          width={200}
+          height={50}
+          className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto"
         />
       </div>
 
@@ -168,10 +168,11 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center relative z-10">
           {/* Badge */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full mb-6 md:mb-8 shadow-lg"
+            style={{ willChange: 'opacity, transform' }}
           >
             <Sparkles className="w-4 h-4 md:w-5 md:h-5" />
             <span className="font-semibold text-sm md:text-base">Coming Q4 2025 • Limited Early Access</span>
@@ -179,10 +180,11 @@ export default function Home() {
 
           {/* Main Title */}
           <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
+            transition={{ duration: 0.2, delay: 0.05, ease: "easeOut" }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 md:mb-6 leading-tight px-2"
+            style={{ willChange: 'opacity, transform' }}
           >
             Egypt&apos;s Market Intelligence
             <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mt-1 md:mt-2">
@@ -192,10 +194,11 @@ export default function Home() {
 
           {/* Subtext */}
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
+            transition={{ duration: 0.2, delay: 0.1, ease: "easeOut" }}
             className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-6 md:mb-8 max-w-4xl mx-auto leading-relaxed font-light px-4"
+            style={{ willChange: 'opacity, transform' }}
           >
             The first <span className="font-bold text-blue-600">centralized data room</span> for Egypt&apos;s private sector. 
             <br className="hidden sm:block" />Real-time insights, AI-powered analysis, and comprehensive market intelligence.
@@ -203,10 +206,11 @@ export default function Home() {
 
           {/* Early Access Limit Indicator */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.3 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2, delay: 0.15, ease: "easeOut" }}
             className="mb-8 md:mb-12"
+            style={{ willChange: 'opacity, transform' }}
           >
             <div className="inline-flex items-center bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-full px-4 py-2 md:px-6 md:py-3 shadow-lg">
               <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-2">
@@ -228,10 +232,11 @@ export default function Home() {
 
           {/* Stats */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.3 }}
+            transition={{ duration: 0.2, delay: 0.2, ease: "easeOut" }}
             className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8 mb-8 md:mb-16 max-w-4xl mx-auto px-4"
+            style={{ willChange: 'opacity, transform' }}
           >
             <div className="text-center">
               <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2">5M+</div>
@@ -246,10 +251,11 @@ export default function Home() {
 
           {/* Primary CTA */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.4 }}
+            transition={{ duration: 0.2, delay: 0.25, ease: "easeOut" }}
             className="space-y-4 md:space-y-6"
+            style={{ willChange: 'opacity, transform' }}
           >
             <button 
               onClick={() => document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' })}

@@ -63,7 +63,7 @@ const DefaultErrorFallback: React.FC<{ error?: Error; resetError: () => void }> 
       </div>
       <h2 className="text-xl font-bold text-gray-900 mb-2">Something went wrong</h2>
       <p className="text-gray-600 mb-4">
-        We're sorry, but something unexpected happened. Please try refreshing the page.
+        We&apos;re sorry, but something unexpected happened. Please try refreshing the page.
       </p>
       {process.env.NODE_ENV === 'development' && error && (
         <details className="text-left mb-4">

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { submitSignup, checkRateLimit } from '@/lib/supabase'
-import { validateInput, sanitizeString, isDisposableEmail, detectSuspiciousActivity } from '@/lib/security'
+import { validateInput, isDisposableEmail, detectSuspiciousActivity } from '@/lib/security'
 
 export async function POST(request: NextRequest) {
   try {

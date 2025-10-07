@@ -2,7 +2,7 @@
 
 interface AnalyticsEvent {
   name: string
-  properties?: Record<string, any>
+  properties?: Record<string, string | number | boolean>
   timestamp?: number
 }
 
@@ -89,7 +89,7 @@ class MonitoringService {
   }
 
   // Track errors
-  trackError(error: Error, context?: Record<string, any>) {
+  trackError(error: Error, context?: Record<string, string | number | boolean>) {
     const errorData = {
       name: 'error',
       properties: {
@@ -145,7 +145,7 @@ class MonitoringService {
   }
 
   // Track user interactions
-  trackInteraction(action: string, element: string, properties?: Record<string, any>) {
+  trackInteraction(action: string, element: string, properties?: Record<string, string | number | boolean>) {
     this.trackEvent({
       name: 'user_interaction',
       properties: {
@@ -179,11 +179,11 @@ export const monitoring = new MonitoringService()
 // Convenience functions
 export const trackEvent = (event: AnalyticsEvent) => monitoring.trackEvent(event)
 export const trackPerformance = (metric: PerformanceMetric) => monitoring.trackPerformance(metric)
-export const trackError = (error: Error, context?: Record<string, any>) => monitoring.trackError(error, context)
+export const trackError = (error: Error, context?: Record<string, string | number | boolean>) => monitoring.trackError(error, context)
 export const trackPageView = (page: string) => monitoring.trackPageView(page)
 export const trackFormSubmission = (formName: string, success: boolean, error?: string) => 
   monitoring.trackFormSubmission(formName, success, error)
-export const trackInteraction = (action: string, element: string, properties?: Record<string, any>) => 
+export const trackInteraction = (action: string, element: string, properties?: Record<string, string | number | boolean>) => 
   monitoring.trackInteraction(action, element, properties)
 
 // Performance monitoring helpers

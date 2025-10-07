@@ -148,7 +148,7 @@ export default function AdminDashboard() {
     if (isAuthenticated) {
       fetchAnalytics()
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated, fetchAnalytics])
 
   if (!isAuthenticated) {
     return (
@@ -396,7 +396,7 @@ export default function AdminDashboard() {
           >
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Signups by Organization Type</h3>
             <div className="space-y-3">
-              {analytics?.signupsByRole.map((item, index) => (
+              {analytics?.signupsByRole.map((item) => (
                 <div key={item.role} className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">{item.role}</span>
                   <div className="flex items-center space-x-2">
@@ -422,7 +422,7 @@ export default function AdminDashboard() {
           >
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Nationalities</h3>
             <div className="space-y-3">
-              {analytics?.signupsByNationality.slice(0, 8).map((item, index) => (
+              {analytics?.signupsByNationality.slice(0, 8).map((item) => (
                 <div key={item.nationality} className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">{item.nationality}</span>
                   <div className="flex items-center space-x-2">
@@ -448,7 +448,7 @@ export default function AdminDashboard() {
           >
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Interest Keywords</h3>
             <div className="space-y-3">
-              {analytics?.topSectorKeywords.slice(0, 10).map((item, index) => (
+              {analytics?.topSectorKeywords.slice(0, 10).map((item) => (
                 <div key={item.keyword} className="flex justify-between items-center">
                   <span className="text-sm text-gray-600 capitalize">{item.keyword}</span>
                   <div className="flex items-center space-x-2">

@@ -121,7 +121,7 @@ export async function GET(request: NextRequest) {
     const monthlyGrowthRate = lastMonth > 0 ? ((signupsThisMonth - lastMonth) / lastMonth * 100) : 0
 
     // Group by organization type
-    const signupsByRole = signups?.reduce((acc: any, signup) => {
+    const signupsByRole = signups?.reduce((acc: Record<string, number>, signup) => {
       const role = signup.organization_type || 'Unknown'
       acc[role] = (acc[role] || 0) + 1
       return acc
@@ -134,7 +134,7 @@ export async function GET(request: NextRequest) {
     })).sort((a, b) => b.count - a.count)
 
     // Group by nationality
-    const signupsByNationality = signups?.reduce((acc: any, signup) => {
+    const signupsByNationality = signups?.reduce((acc: Record<string, number>, signup) => {
       const nationality = signup.nationality || 'Unknown'
       acc[nationality] = (acc[nationality] || 0) + 1
       return acc
@@ -150,7 +150,7 @@ export async function GET(request: NextRequest) {
       .slice(0, 10) // Top 10 nationalities
 
     // Group by interested sectors (now text field)
-    const sectorKeywords = signups?.reduce((acc: any, signup) => {
+    const sectorKeywords = signups?.reduce((acc: Record<string, number>, signup) => {
       const sectors = signup.interested_sectors?.toLowerCase() || ''
       const keywords = sectors.split(/[,\s]+/).filter(word => word.length > 2)
       keywords.forEach(keyword => {
@@ -165,7 +165,7 @@ export async function GET(request: NextRequest) {
       .slice(0, 15)
 
     // Group by date for trend analysis
-    const signupsByDate = signups?.reduce((acc: any, signup) => {
+    const signupsByDate = signups?.reduce((acc: Record<string, number>, signup) => {
       const date = new Date(signup.created_at).toISOString().split('T')[0]
       acc[date] = (acc[date] || 0) + 1
       return acc
@@ -177,7 +177,7 @@ export async function GET(request: NextRequest) {
       .slice(-30) // Last 30 days
 
     // Hourly distribution
-    const signupsByHour = signups?.reduce((acc: any, signup) => {
+    const signupsByHour = signups?.reduce((acc: Record<number, number>, signup) => {
       const hour = new Date(signup.created_at).getHours()
       acc[hour] = (acc[hour] || 0) + 1
       return acc
@@ -253,7 +253,23 @@ export async function GET(request: NextRequest) {
   }
 }
 
-function generateCSV(signups: any[]): string {
+function generateCSV(signups: Array<{
+  id: string;
+  full_name: string;
+  email: string;
+  mobile_number: string;
+  nationality: string;
+  organization_name: string;
+  organization_type: string;
+  organization_type_other: string | null;
+  position_title: string;
+  interested_sectors: string;
+  interested_datasets: string[];
+  interested_datasets_other: string | null;
+  data_usage: string[];
+  data_usage_other: string | null;
+  created_at: string;
+}>): string {
   const headers = [
     'ID',
     'Full Name',

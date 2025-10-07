@@ -84,11 +84,11 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
     setFormData(prev => ({ ...prev, [field]: value }))
   }
 
-  const handleMultiSelect = (field: 'interestedSectors' | 'interestedDatasets' | 'dataUsage', value: string) => {
+  const handleMultiSelect = (field: 'interestedDatasets' | 'dataUsage', value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: prev[field].includes(value) 
-        ? prev[field].filter(item => item !== value)
+        ? prev[field].filter((item: string) => item !== value)
         : [...prev[field], value]
     }))
   }
@@ -140,7 +140,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
     // Track form submission attempt
     trackInteraction('form_submit_attempt', 'multi_step_form', {
       step: currentStep,
-      form_data_keys: Object.keys(formData)
+      form_data_keys: Object.keys(formData).join(',')
     })
     
     if (isStepValid(3)) {

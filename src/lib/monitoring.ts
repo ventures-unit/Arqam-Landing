@@ -151,7 +151,7 @@ class MonitoringService {
       properties: {
         form_name: formName,
         success,
-        error: error || null
+        error: error || ''
       }
     })
   }

@@ -139,7 +139,7 @@ class MonitoringService {
       name: 'page_view',
       properties: {
         page,
-        referrer: this.isClient ? document.referrer : undefined
+        referrer: this.isClient ? document.referrer : ''
       }
     })
   }

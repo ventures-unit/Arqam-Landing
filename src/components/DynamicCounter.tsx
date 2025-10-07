@@ -10,7 +10,7 @@ interface DynamicCounterProps {
 
 export default function DynamicCounter({ className = '' }: DynamicCounterProps) {
   const [counterData, setCounterData] = useState({
-    currentCount: 500,
+    currentCount: 250,
     maxCount: 750,
     isNearLimit: false,
     isAtLimit: false
@@ -41,7 +41,7 @@ export default function DynamicCounter({ className = '' }: DynamicCounterProps) 
   if (isLoading) {
     return (
       <div className={`text-center ${className}`}>
-        <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2">500+</div>
+        <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2" style={{ color: '#1f3872' }}>250+</div>
         <div className="text-gray-600 font-medium text-sm md:text-base">Early Users</div>
       </div>
     )
@@ -54,13 +54,14 @@ export default function DynamicCounter({ className = '' }: DynamicCounterProps) 
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
-        className={`text-2xl md:text-4xl font-bold mb-1 md:mb-2 ${
-          counterData.isAtLimit 
-            ? 'text-red-600' 
+        className="text-2xl md:text-4xl font-bold mb-1 md:mb-2"
+        style={{ 
+          color: counterData.isAtLimit 
+            ? '#dc2626' 
             : counterData.isNearLimit 
-            ? 'text-orange-600' 
-            : 'text-blue-600'
-        }`}
+            ? '#ea580c' 
+            : '#1f3872'
+        }}
       >
         {formatCount(counterData.currentCount)}
       </motion.div>
@@ -69,13 +70,14 @@ export default function DynamicCounter({ className = '' }: DynamicCounterProps) 
       {/* Progress bar */}
       <div className="mt-2 w-full bg-gray-200 rounded-full h-1.5">
         <motion.div
-          className={`h-1.5 rounded-full ${
-            counterData.isAtLimit 
-              ? 'bg-red-500' 
+          className="h-1.5 rounded-full"
+          style={{ 
+            backgroundColor: counterData.isAtLimit 
+              ? '#ef4444' 
               : counterData.isNearLimit 
-              ? 'bg-orange-500' 
-              : 'bg-blue-500'
-          }`}
+              ? '#f97316' 
+              : '#1f3872'
+          }}
           initial={{ width: 0 }}
           animate={{ width: `${progressPercentage}%` }}
           transition={{ duration: 1, ease: "easeOut" }}

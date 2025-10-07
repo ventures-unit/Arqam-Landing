@@ -5,12 +5,12 @@ import { join } from 'path'
 export async function GET(request: NextRequest) {
   try {
     // Read the PNG file
-    const filePath = join(process.cwd(), 'public', 'images', 'arqam-blue.png')
+    const filePath = join(process.cwd(), 'public', 'images', 'newblue0.svg')
     const fileBuffer = await readFile(filePath)
     
     return new NextResponse(fileBuffer, {
       headers: {
-        'Content-Type': 'image/png',
+        'Content-Type': 'image/svg+xml',
         'Cache-Control': 'no-cache, no-store, must-revalidate',
         'Pragma': 'no-cache',
         'Expires': '0',

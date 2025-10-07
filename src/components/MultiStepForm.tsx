@@ -19,24 +19,13 @@ interface FormData {
   positionTitle: string
   
   // Section 3: Data Room Interests & Needs
-  interestedSectors: string[]
-  interestedSectorsOther: string
+  interestedSectors: string
   interestedDatasets: string[]
   interestedDatasetsOther: string
   dataUsage: string[]
   dataUsageOther: string
 }
 
-const SECTORS = [
-  'FinTech',
-  'AgriTech', 
-  'HealthTech',
-  'EdTech',
-  'Tourism',
-  'Cleantech / Renewable Energy',
-  'AI / DeepTech',
-  'Other'
-]
 
 const DATASETS = [
   'Startup & funding data',
@@ -82,8 +71,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
     organizationType: '',
     organizationTypeOther: '',
     positionTitle: '',
-    interestedSectors: [],
-    interestedSectorsOther: '',
+    interestedSectors: '',
     interestedDatasets: [],
     interestedDatasetsOther: '',
     dataUsage: [],
@@ -106,8 +94,11 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
   }
 
   const nextStep = () => {
-    if (currentStep < totalSteps) {
+    if (currentStep < totalSteps && isStepValid(currentStep)) {
       setCurrentStep(currentStep + 1)
+    } else if (currentStep < totalSteps && !isStepValid(currentStep)) {
+      // Show user feedback for invalid step
+      alert('Please fill in all required fields before proceeding to the next step.')
     }
   }
 
@@ -120,15 +111,22 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
   const isStepValid = (step: number) => {
     switch (step) {
       case 1:
-        return formData.fullName && formData.email && formData.mobileNumber && formData.nationality
+        return formData.fullName.trim() && 
+               formData.email.trim() && 
+               formData.mobileNumber.trim() && 
+               formData.nationality.trim() &&
+               formData.email.includes('@') // Basic email validation
       case 2:
-        return formData.organizationName && formData.organizationType && formData.positionTitle &&
-               (formData.organizationType !== 'Other' || formData.organizationTypeOther)
+        return formData.organizationName.trim() && 
+               formData.organizationType && 
+               formData.positionTitle.trim() &&
+               (formData.organizationType !== 'Other' || formData.organizationTypeOther.trim())
       case 3:
-        return formData.interestedSectors.length > 0 && formData.interestedDatasets.length > 0 && formData.dataUsage.length > 0 &&
-               (!formData.interestedSectors.includes('Other') || formData.interestedSectorsOther) &&
-               (!formData.interestedDatasets.includes('Other') || formData.interestedDatasetsOther) &&
-               (!formData.dataUsage.includes('Other') || formData.dataUsageOther)
+        return formData.interestedSectors.trim() && 
+               formData.interestedDatasets.length > 0 && 
+               formData.dataUsage.length > 0 &&
+               (!formData.interestedDatasets.includes('Other') || formData.interestedDatasetsOther.trim()) &&
+               (!formData.dataUsage.includes('Other') || formData.dataUsageOther.trim())
       default:
         return false
     }
@@ -189,7 +187,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
             type="text"
             value={formData.fullName}
             onChange={(e) => handleInputChange('fullName', e.target.value)}
-            className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-500 bg-white"
+            className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg form-input-focus text-gray-900 placeholder-gray-500 bg-white"
             placeholder="Enter your full name"
             required
           />
@@ -201,7 +199,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
             type="email"
             value={formData.email}
             onChange={(e) => handleInputChange('email', e.target.value)}
-            className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-500 bg-white"
+            className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg form-input-focus text-gray-900 placeholder-gray-500 bg-white"
             placeholder="Enter your email"
             required
           />
@@ -213,7 +211,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
             type="tel"
             value={formData.mobileNumber}
             onChange={(e) => handleInputChange('mobileNumber', e.target.value)}
-            className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-500 bg-white"
+            className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg form-input-focus text-gray-900 placeholder-gray-500 bg-white"
             placeholder="+20 123 456 7890"
             required
           />
@@ -225,7 +223,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
             type="text"
             value={formData.nationality}
             onChange={(e) => handleInputChange('nationality', e.target.value)}
-            className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-500 bg-white"
+            className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg form-input-focus text-gray-900 placeholder-gray-500 bg-white"
             placeholder="Enter your nationality"
             required
           />
@@ -250,7 +248,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
             type="text"
             value={formData.organizationName}
             onChange={(e) => handleInputChange('organizationName', e.target.value)}
-            className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-500 bg-white shadow-sm"
+            className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl form-input-focus text-gray-900 placeholder-gray-500 bg-white shadow-sm"
             placeholder="Enter your organization name"
             required
           />
@@ -261,7 +259,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
           <select
             value={formData.organizationType}
             onChange={(e) => handleInputChange('organizationType', e.target.value)}
-            className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white shadow-sm"
+            className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl form-input-focus text-gray-900 bg-white shadow-sm"
             required
           >
             <option value="">Select organization type</option>
@@ -274,7 +272,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
               type="text"
               value={formData.organizationTypeOther}
               onChange={(e) => handleInputChange('organizationTypeOther', e.target.value)}
-              className="w-full mt-3 px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-500 bg-white shadow-sm"
+              className="w-full mt-3 px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:border-gray-400 text-gray-900 placeholder-gray-500 bg-white shadow-sm"
               placeholder="Please specify"
             />
           )}
@@ -286,7 +284,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
             type="text"
             value={formData.positionTitle}
             onChange={(e) => handleInputChange('positionTitle', e.target.value)}
-            className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-500 bg-white shadow-sm"
+            className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl form-input-focus text-gray-900 placeholder-gray-500 bg-white shadow-sm"
             placeholder="e.g., Data Analyst, Business Analyst, Research Fellow, Policy Advisor, Investor, Founder/Co-founder, Program Manager, Senior Associate"
             required
           />
@@ -306,41 +304,41 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
     >
       <div className="space-y-8">
         <div>
-          <label className="block text-sm font-semibold text-gray-800 mb-4">Which sectors are you most interested in? *</label>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {SECTORS.map(sector => (
-              <label key={sector} className="flex items-center space-x-3 p-4 border-2 border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 cursor-pointer transition-all duration-200">
-                <input
-                  type="checkbox"
-                  checked={formData.interestedSectors.includes(sector)}
-                  onChange={() => handleMultiSelect('interestedSectors', sector)}
-                  className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                />
-                <span className="text-sm font-medium text-gray-800">{sector}</span>
-              </label>
-            ))}
-          </div>
-          {formData.interestedSectors.includes('Other') && (
-            <input
-              type="text"
-              value={formData.interestedSectorsOther}
-              onChange={(e) => handleInputChange('interestedSectorsOther', e.target.value)}
-              className="w-full mt-4 px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-500 bg-white shadow-sm"
-              placeholder="Please specify other sectors"
-            />
-          )}
+          <label className="block text-sm font-semibold text-gray-800 mb-2">What types of data or areas are you most interested in exploring? *</label>
+          <p className="text-sm text-gray-600 mb-4">(For example: macroeconomic data, market data, FDI trends, startup and investment insights, FinTech & digital finance, Cleantech, labor market, trade, or regulatory data.)</p>
+          <textarea
+            value={formData.interestedSectors}
+            onChange={(e) => handleInputChange('interestedSectors', e.target.value)}
+            className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:border-gray-400 text-gray-900 placeholder-gray-500 bg-white shadow-sm resize-none"
+            placeholder="Please describe the types of data or areas you're most interested in exploring..."
+            rows={4}
+            required
+          />
         </div>
         
         <div>
           <label className="block text-sm font-semibold text-gray-800 mb-4">Which types of data sets are you most interested in? *</label>
           <div className="grid grid-cols-1 gap-3">
             {DATASETS.map(dataset => (
-              <label key={dataset} className="flex items-start space-x-3 p-4 border-2 border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 cursor-pointer transition-all duration-200">
+              <label key={dataset} className="flex items-start space-x-3 p-4 border-2 border-gray-200 rounded-xl hover:border-gray-400 cursor-pointer transition-all duration-200"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = '#1f3872'
+                e.currentTarget.style.backgroundColor = '#f8fafc'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = '#e5e7eb'
+                e.currentTarget.style.backgroundColor = 'transparent'
+              }}
+              >
                 <input
                   type="checkbox"
                   checked={formData.interestedDatasets.includes(dataset)}
                   onChange={() => handleMultiSelect('interestedDatasets', dataset)}
-                  className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1"
+                  className="w-5 h-5 border-gray-300 rounded focus:ring-2 mt-1"
+                  style={{ 
+                    accentColor: '#1f3872',
+                    '--tw-ring-color': '#1f3872'
+                  } as React.CSSProperties}
                 />
                 <span className="text-sm font-medium text-gray-800">{dataset}</span>
               </label>
@@ -351,7 +349,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
               type="text"
               value={formData.interestedDatasetsOther}
               onChange={(e) => handleInputChange('interestedDatasetsOther', e.target.value)}
-              className="w-full mt-4 px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-500 bg-white shadow-sm"
+              className="w-full mt-4 px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:border-gray-400 text-gray-900 placeholder-gray-500 bg-white shadow-sm"
               placeholder="Please specify other datasets"
             />
           )}
@@ -361,12 +359,25 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
           <label className="block text-sm font-semibold text-gray-800 mb-4">How do you plan to use the data? *</label>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {USAGE_TYPES.map(usage => (
-              <label key={usage} className="flex items-center space-x-3 p-4 border-2 border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 cursor-pointer transition-all duration-200">
+              <label key={usage} className="flex items-center space-x-3 p-4 border-2 border-gray-200 rounded-xl hover:border-gray-400 cursor-pointer transition-all duration-200"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = '#1f3872'
+                e.currentTarget.style.backgroundColor = '#f8fafc'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = '#e5e7eb'
+                e.currentTarget.style.backgroundColor = 'transparent'
+              }}
+              >
                 <input
                   type="checkbox"
                   checked={formData.dataUsage.includes(usage)}
                   onChange={() => handleMultiSelect('dataUsage', usage)}
-                  className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                  className="w-5 h-5 border-gray-300 rounded focus:ring-2"
+                  style={{ 
+                    accentColor: '#1f3872',
+                    '--tw-ring-color': '#1f3872'
+                  } as React.CSSProperties}
                 />
                 <span className="text-sm font-medium text-gray-800">{usage}</span>
               </label>
@@ -377,7 +388,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
               type="text"
               value={formData.dataUsageOther}
               onChange={(e) => handleInputChange('dataUsageOther', e.target.value)}
-              className="w-full mt-4 px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-500 bg-white shadow-sm"
+              className="w-full mt-4 px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:border-gray-400 text-gray-900 placeholder-gray-500 bg-white shadow-sm"
               placeholder="Please specify other usage"
             />
           )}
@@ -395,15 +406,19 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
             <div key={step} className="flex items-center">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold ${
                 step <= currentStep 
-                  ? 'bg-blue-600 text-white' 
+                  ? 'text-white' 
                   : 'bg-gray-200 text-gray-500'
-              }`}>
+              }`}
+              style={step <= currentStep ? { backgroundColor: '#1f3872' } : {}}
+              >
                 {step}
               </div>
               {step < 3 && (
                 <div className={`w-16 h-1 mx-2 ${
-                  step < currentStep ? 'bg-blue-600' : 'bg-gray-200'
-                }`} />
+                  step < currentStep ? '' : 'bg-gray-200'
+                }`}
+                style={step < currentStep ? { backgroundColor: '#1f3872' } : {}}
+                />
               )}
             </div>
           ))}
@@ -443,7 +458,10 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
             type="button"
             onClick={nextStep}
             disabled={!isStepValid(currentStep)}
-            className="flex items-center justify-center space-x-1 sm:space-x-2 px-3 sm:px-8 py-3 sm:py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold shadow-lg hover:shadow-xl text-sm sm:text-base flex-1 sm:flex-none"
+            className="flex items-center justify-center space-x-1 sm:space-x-2 px-3 sm:px-8 py-3 sm:py-4 text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold shadow-lg hover:shadow-xl text-sm sm:text-base flex-1 sm:flex-none"
+            style={{ backgroundColor: '#1f3872' }}
+            onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#1a2f5f'}
+            onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#1f3872'}
           >
             <span>Next</span>
             <ChevronRight className="w-5 h-5" />

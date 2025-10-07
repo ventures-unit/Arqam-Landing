@@ -3,9 +3,11 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://your-project-id.supabase.co'
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'your-anon-key-here'
 
-// Debug logging
-console.log('Supabase URL:', supabaseUrl)
-console.log('Supabase Key exists:', !!supabaseAnonKey)
+// Debug logging (only in development)
+if (process.env.NODE_ENV === 'development') {
+  console.log('Supabase URL:', supabaseUrl)
+  console.log('Supabase Key exists:', !!supabaseAnonKey)
+}
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
@@ -101,7 +103,9 @@ export async function submitSignup(data: Omit<SignupData, 'id' | 'created_at'>) 
       data_usage_other: data.dataUsageOther?.trim() || null
     }
 
-    console.log('Attempting to insert:', sanitizedData)
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Attempting to insert:', sanitizedData)
+    }
 
     const { data: result, error } = await supabase
       .from('arqam_signups')
@@ -126,7 +130,9 @@ export async function submitSignup(data: Omit<SignupData, 'id' | 'created_at'>) 
       }
     }
 
-    console.log('Successfully inserted:', result)
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Successfully inserted:', result)
+    }
     return { success: true, data: result }
   } catch (error) {
     console.error('Signup error:', error)

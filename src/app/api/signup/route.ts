@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { submitSignup, checkRateLimit } from '@/lib/supabase'
+import { validateInput, sanitizeString, isDisposableEmail, detectSuspiciousActivity } from '@/lib/security'
 
 export async function POST(request: NextRequest) {
   try {
@@ -7,8 +8,8 @@ export async function POST(request: NextRequest) {
     const forwarded = request.headers.get('x-forwarded-for')
     const ip = forwarded ? forwarded.split(',')[0] : 'unknown'
     
-    // Check rate limit (5 requests per minute per IP)
-    if (!checkRateLimit(ip, 5, 60000)) {
+    // Check rate limit (3 requests per minute per IP for signup)
+    if (!checkRateLimit(ip, 3, 60000)) {
       return NextResponse.json(
         { error: 'Too many requests. Please try again later.' },
         { status: 429 }
@@ -17,10 +18,40 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json()
     
-    // Validate required fields for new multi-step form
-    if (!body.email || !body.fullName) {
+    // Detect suspicious activity
+    if (detectSuspiciousActivity(body)) {
       return NextResponse.json(
-        { error: 'Full name and email are required.' },
+        { error: 'Invalid request detected.' },
+        { status: 400 }
+      )
+    }
+    
+    // Enhanced validation
+    const validation = validateInput({
+      email: body.email,
+      name: body.fullName,
+      role: body.organizationType || 'Other'
+    })
+    
+    if (!validation.isValid) {
+      return NextResponse.json(
+        { error: validation.errors.join(', ') },
+        { status: 400 }
+      )
+    }
+    
+    // Check for disposable email
+    if (isDisposableEmail(body.email)) {
+      return NextResponse.json(
+        { error: 'Please use a valid business email address.' },
+        { status: 400 }
+      )
+    }
+    
+    // Validate required fields for new multi-step form
+    if (!body.email || !body.fullName || !body.mobileNumber || !body.nationality) {
+      return NextResponse.json(
+        { error: 'All required fields must be filled.' },
         { status: 400 }
       )
     }

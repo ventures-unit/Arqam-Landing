@@ -12,7 +12,7 @@ export interface CounterData {
   isAtLimit: boolean
 }
 
-const BASE_COUNT = 500
+const BASE_COUNT = 250
 const MAX_EARLY_ACCESS = 750
 
 /**

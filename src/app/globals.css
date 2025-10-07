@@ -52,10 +52,11 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Focus styles */
-*:focus {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
+/* Custom focus styles for form elements */
+.form-input-focus:focus {
+  border-color: #1f3872 !important;
+  box-shadow: 0 0 0 3px rgba(31, 56, 114, 0.1) !important;
+  outline: none !important;
 }
 
 /* Custom animations */

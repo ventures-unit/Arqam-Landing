@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { 
@@ -34,7 +34,20 @@ export default function Home() {
   }, []);
   const [error, setError] = useState('');
 
-  const handleFormSubmit = async (data: unknown) => {
+  // Memoized scroll handlers for performance
+  const scrollToFeatures = useCallback(() => {
+    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  const scrollToAbout = useCallback(() => {
+    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  const scrollToSignup = useCallback(() => {
+    document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  const handleFormSubmit = useCallback(async (data: unknown) => {
     try {
       const response = await fetch('/api/signup', {
         method: 'POST',
@@ -57,7 +70,7 @@ export default function Home() {
       console.error('Signup error:', error);
       setError(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
     }
-  };
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -68,11 +81,11 @@ export default function Home() {
       {/* Logo */}
       <div className="flex items-center space-x-3">
         <Image 
-          src="/images/arqam-blue.png" 
+          src="/images/newblue0.svg" 
           alt="Arqam Logo" 
-          width={450}
-          height={112}
-          className="h-24 sm:h-32 md:h-36 lg:h-48 w-auto"
+          width={240}
+          height={55}
+          className="h-7 sm:h-9 md:h-11 lg:h-13 w-auto"
           priority
         />
       </div>
@@ -81,14 +94,16 @@ export default function Home() {
             <div className="hidden lg:flex items-center absolute left-1/2 transform -translate-x-1/2">
               <div className="flex items-center space-x-8">
                 <button 
-                  onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+                  onClick={scrollToFeatures}
+                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors focus:outline-none focus:ring-0 focus:border-none focus:shadow-none active:outline-none active:ring-0 active:border-none"
+                  style={{ outline: 'none', boxShadow: 'none' }}
                 >
                   Features
                 </button>
                 <button 
-                  onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+                  onClick={scrollToAbout}
+                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors focus:outline-none focus:ring-0 focus:border-none focus:shadow-none active:outline-none active:ring-0 active:border-none"
+                  style={{ outline: 'none', boxShadow: 'none' }}
                 >
                   About
                 </button>
@@ -98,8 +113,11 @@ export default function Home() {
             {/* Desktop CTA Button */}
             <div className="hidden md:block">
               <button 
-                onClick={() => document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-blue-600 text-white px-4 lg:px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl text-sm lg:text-base"
+                onClick={scrollToSignup}
+                className="text-white px-4 lg:px-6 py-2 rounded-lg font-medium transition-colors duration-200 shadow-lg hover:shadow-xl text-sm lg:text-base"
+                style={{ backgroundColor: '#1f3872' }}
+                onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#1a2f5f'}
+                onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#1f3872'}
               >
                 Register for Early Access
               </button>
@@ -108,8 +126,9 @@ export default function Home() {
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center space-x-3">
               <button 
-                onClick={() => document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm"
+                onClick={scrollToSignup}
+                className="text-white px-4 py-2 rounded-lg font-medium text-sm"
+                style={{ backgroundColor: '#1f3872' }}
               >
                 Sign Up
               </button>
@@ -133,28 +152,33 @@ export default function Home() {
               <div className="px-2 pt-2 pb-3 space-y-1">
                 <button 
                   onClick={() => {
-                    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                    scrollToFeatures();
                     setIsMobileMenuOpen(false);
                   }}
-                  className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors"
+                  className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors focus:outline-none focus:ring-0 focus:border-none focus:shadow-none active:outline-none active:ring-0 active:border-none"
+                  style={{ outline: 'none', boxShadow: 'none' }}
                 >
                   Features
                 </button>
                 <button 
                   onClick={() => {
-                    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                    scrollToAbout();
                     setIsMobileMenuOpen(false);
                   }}
-                  className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors"
+                  className="block w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors focus:outline-none focus:ring-0 focus:border-none focus:shadow-none active:outline-none active:ring-0 active:border-none"
+                  style={{ outline: 'none', boxShadow: 'none' }}
                 >
                   About
                 </button>
                 <button 
                   onClick={() => {
-                    document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
+                    scrollToSignup();
                     setIsMobileMenuOpen(false);
                   }}
-                  className="block w-full text-left px-3 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-lg font-medium transition-colors mt-2"
+                  className="block w-full text-left px-3 py-2 text-white rounded-lg font-medium transition-colors mt-2 focus:outline-none focus:ring-0 focus:border-none"
+                  style={{ backgroundColor: '#1f3872' }}
+                  onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#1a2f5f'}
+                  onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#1f3872'}
                 >
                   Register for Early Access
                 </button>
@@ -165,12 +189,14 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-16 md:pt-24 pb-12 md:pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
+      <section className="pt-16 md:pt-24 pb-12 md:pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%)' }}
+      >
         {/* Background Elements - Hidden on mobile */}
         <div className="absolute inset-0 overflow-hidden hidden md:block">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-100 rounded-full opacity-20"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-100 rounded-full opacity-20"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full opacity-10"></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full opacity-20" style={{ backgroundColor: '#e2e8f0' }}></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full opacity-20" style={{ backgroundColor: '#cbd5e1' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full opacity-10" style={{ background: 'linear-gradient(90deg, #e2e8f0 0%, #cbd5e1 100%)' }}></div>
         </div>
 
         <div className="max-w-6xl mx-auto text-center relative z-10">
@@ -179,8 +205,11 @@ export default function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full mb-6 md:mb-8 shadow-lg"
-            style={{ willChange: 'opacity, transform' }}
+            className="inline-flex items-center space-x-2 text-white px-4 md:px-6 py-2 md:py-3 rounded-full mb-6 md:mb-8 shadow-lg"
+            style={{ 
+              background: 'linear-gradient(135deg, #1f3872 0%, #2d4a8a 100%)',
+              willChange: 'opacity, transform'
+            }}
           >
             <Sparkles className="w-4 h-4 md:w-5 md:h-5" />
             <span className="font-semibold text-sm md:text-base">Coming Q4 2025 • Limited Early Access</span>
@@ -195,7 +224,7 @@ export default function Home() {
             style={{ willChange: 'opacity, transform' }}
           >
             Egypt&apos;s Market Intelligence
-            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mt-1 md:mt-2">
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-1 md:mt-2" style={{ color: '#1f3872' }}>
               Platform
             </span>
           </motion.h1>
@@ -208,7 +237,7 @@ export default function Home() {
             className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-6 md:mb-8 max-w-4xl mx-auto leading-relaxed font-light px-4"
             style={{ willChange: 'opacity, transform' }}
           >
-            The first <span className="font-bold text-blue-600">centralized data room</span> for Egypt&apos;s private sector. 
+            The first <span className="font-bold" style={{ color: '#1f3872' }}>centralized data room</span> for Egypt&apos;s private sector. 
             <br className="hidden sm:block" />Real-time insights, AI-powered analysis, and comprehensive market intelligence.
           </motion.p>
 
@@ -247,12 +276,12 @@ export default function Home() {
             style={{ willChange: 'opacity, transform' }}
           >
             <div className="text-center">
-              <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2">5M+</div>
+              <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2" style={{ color: '#1f3872' }}>5M+</div>
               <div className="text-gray-600 font-medium text-sm md:text-base">Data Points</div>
             </div>
             <DynamicCounter />
             <div className="text-center">
-              <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-1 md:mb-2">24/7</div>
+              <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2" style={{ color: '#1f3872' }}>24/7</div>
               <div className="text-gray-600 font-medium text-sm md:text-base">Updates</div>
             </div>
           </motion.div>
@@ -268,14 +297,62 @@ export default function Home() {
             <button 
               onClick={() => {
                 trackInteraction('cta_click', 'get_early_access', { location: 'hero' });
-                document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
+                scrollToSignup();
               }}
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 md:px-16 py-3 md:py-6 rounded-2xl font-bold text-base md:text-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 md:hover:-translate-y-2 hover:scale-105 w-full sm:w-auto"
+              className="text-white px-6 md:px-16 py-3 md:py-6 rounded-2xl font-bold text-base md:text-xl transition-all duration-200 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 md:hover:-translate-y-2 hover:scale-105 w-full sm:w-auto"
+              style={{ background: 'linear-gradient(135deg, #1f3872 0%, #2d4a8a 100%)' }}
+              onMouseEnter={(e) => (e.target as HTMLButtonElement).style.background = 'linear-gradient(135deg, #1a2f5f 0%, #253d7a 100%)'}
+              onMouseLeave={(e) => (e.target as HTMLButtonElement).style.background = 'linear-gradient(135deg, #1f3872 0%, #2d4a8a 100%)'}
             >
               Get Early Access Now
             </button>
             <p className="text-gray-500 text-sm md:text-lg px-4">Join 500+ founders, investors, and policymakers already on the waitlist</p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Signup Section - Multi-Step Form - Moved to Top */}
+      <section id="signup" className="py-12 md:py-20 px-4 sm:px-6 lg:px-8"
+      style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)' }}
+      >
+        <div className="max-w-4xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get Early Access</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Join the waitlist and be among the first to access Egypt&apos;s most comprehensive market intelligence platform
+            </p>
+          </motion.div>
+
+          {isSubmitted ? (
+            <div className="flex items-center justify-center py-16 md:py-24">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 text-center max-w-2xl mx-auto"
+              >
+                <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-6" />
+                <h3 className="text-3xl font-bold text-green-900 mb-4">Application Submitted!</h3>
+                <p className="text-xl text-green-700 mb-6">
+                  Thank you for your interest in Arqam. We&apos;ll review your application and notify you when early access opens.
+                </p>
+              </motion.div>
+            </div>
+          ) : (
+            <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 lg:p-12">
+              {error && (
+                <div className="mb-6 bg-red-50 border border-red-200 rounded-xl p-4">
+                  <p className="text-red-800 text-center">{error}</p>
+                </div>
+              )}
+              <MultiStepForm onSubmit={handleFormSubmit} isSubmitting={isSubmitting} />
+            </div>
+          )}
         </div>
       </section>
 
@@ -344,7 +421,9 @@ export default function Home() {
       </section>
 
       {/* Problem Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-gray-50 to-blue-50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8"
+      style={{ background: 'linear-gradient(90deg, #f9fafb 0%, #f8fafc 100%)' }}
+      >
         <div className="max-w-4xl mx-auto text-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -381,7 +460,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 shadow-xl border-l-4 border-blue-500">
+            <div className="bg-white rounded-2xl p-8 shadow-xl border-l-4" style={{ borderLeftColor: '#1f3872' }}>
               <p className="text-gray-700 text-xl font-medium mb-4">
                 &quot;We need a single source of truth for Egypt&apos;s market intelligence.&quot;
               </p>
@@ -392,12 +471,14 @@ export default function Home() {
       </section>
 
       {/* Strategic Foundations Section */}
-      <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+      <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)' }}
+      >
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-100/20 to-indigo-100/20"></div>
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-indigo-200/30 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(226, 232, 240, 0.2) 0%, rgba(203, 213, 225, 0.2) 100%)' }}></div>
+          <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ background: 'linear-gradient(135deg, rgba(226, 232, 240, 0.3) 0%, transparent 100%)' }}></div>
+          <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl" style={{ background: 'linear-gradient(135deg, rgba(203, 213, 225, 0.3) 0%, transparent 100%)' }}></div>
         </div>
         
         <div className="max-w-7xl mx-auto relative">
@@ -414,10 +495,10 @@ export default function Home() {
             {/* Mission & Vision */}
             <div className="space-y-8">
               <div className="group relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+                <div className="absolute -inset-1 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000" style={{ background: 'linear-gradient(90deg, #1f3872 0%, #2d4a8a 100%)' }}></div>
                 <div className="relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
                   <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-3">
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center mr-3" style={{ background: 'linear-gradient(90deg, #1f3872 0%, #2d4a8a 100%)' }}>
                       <span className="text-white font-bold text-sm">M</span>
                     </div>
                     <h3 className="text-xl font-bold text-gray-900">Mission</h3>
@@ -481,49 +562,9 @@ export default function Home() {
       </section>
 
 
-      {/* Signup Section - Multi-Step Form */}
-      <section id="signup" className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div className="max-w-4xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get Early Access</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Join the waitlist and be among the first to access Egypt&apos;s most comprehensive market intelligence platform
-            </p>
-          </motion.div>
-
-          {isSubmitted ? (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 text-center"
-            >
-              <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-6" />
-              <h3 className="text-3xl font-bold text-green-900 mb-4">Application Submitted!</h3>
-              <p className="text-xl text-green-700 mb-6">
-                Thank you for your interest in Arqam. We&apos;ll review your application and notify you when early access opens.
-              </p>
-            </motion.div>
-          ) : (
-            <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 lg:p-12">
-              {error && (
-                <div className="mb-6 bg-red-50 border border-red-200 rounded-xl p-4">
-                  <p className="text-red-800 text-center">{error}</p>
-                </div>
-              )}
-              <MultiStepForm onSubmit={handleFormSubmit} isSubmitting={isSubmitting} />
-            </div>
-          )}
-        </div>
-      </section>
 
       {/* Footer */}
-      <footer className="bg-blue-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+      <footer className="text-white py-12 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#1f3872' }}>
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
@@ -538,11 +579,7 @@ export default function Home() {
               />
             </div>
             <div className="text-center md:text-right">
-              <p className="text-blue-200 mb-2">© 2025 Arqam. All rights reserved.</p>
-              <div className="flex justify-center md:justify-end space-x-6 text-sm">
-                <a href="#" className="text-blue-200 hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="text-blue-200 hover:text-white transition-colors">Terms of Service</a>
-              </div>
+              <p className="mb-2" style={{ color: '#a8b5d1' }}>© 2025 Arqam. All rights reserved.</p>
             </div>
           </div>
         </div>

@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
     const forwarded = request.headers.get('x-forwarded-for')
     const ip = forwarded ? forwarded.split(',')[0] : 'unknown'
     
-    if (!checkRateLimit(ip, 10, 60000)) {
+    if (!checkRateLimit(ip, 30, 60000)) {
       return NextResponse.json(
         { error: 'Too many requests. Please try again later.' },
         { status: 429 }

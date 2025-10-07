@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { 
   Users, 
@@ -81,7 +81,7 @@ export default function AdminDashboard() {
     }
   }
 
-  const fetchAnalytics = async () => {
+  const fetchAnalytics = useCallback(async () => {
     try {
       setLoading(true)
       const params = new URLSearchParams()
@@ -106,7 +106,7 @@ export default function AdminDashboard() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [dateFrom, dateTo])
 
   const handleExport = async () => {
     try {
@@ -146,7 +146,11 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      fetchAnalytics()
+      const timeoutId = setTimeout(() => {
+        fetchAnalytics()
+      }, 500) // 500ms debounce
+      
+      return () => clearTimeout(timeoutId)
     }
   }, [isAuthenticated, fetchAnalytics])
 

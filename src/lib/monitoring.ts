@@ -1,5 +1,17 @@
 // Monitoring and analytics utilities for production
 
+// Extend Window interface for analytics
+declare global {
+  interface Window {
+    va?: (action: string, eventName: string, properties?: Record<string, unknown>) => void;
+    gtag?: (action: string, eventName: string, config?: Record<string, unknown>) => void;
+    webVitals?: (name: string, value: number) => void;
+    Sentry?: {
+      captureException: (error: Error, context?: Record<string, unknown>) => void;
+    };
+  }
+}
+
 interface AnalyticsEvent {
   name: string
   properties?: Record<string, string | number | boolean>
@@ -37,13 +49,13 @@ class MonitoringService {
     // Send to analytics service (Vercel Analytics, Google Analytics, etc.)
     try {
       // Vercel Analytics
-      if (typeof window !== 'undefined' && (window as any).va) {
-        (window as any).va('track', event.name, event.properties)
+      if (typeof window !== 'undefined' && window.va) {
+        window.va('track', event.name, event.properties)
       }
 
       // Google Analytics 4
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', event.name, {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', event.name, {
           event_category: 'engagement',
           event_label: event.properties?.label || '',
           value: event.properties?.value || 0,
@@ -77,8 +89,8 @@ class MonitoringService {
     // Send to monitoring service
     try {
       // Web Vitals
-      if (typeof window !== 'undefined' && (window as any).webVitals) {
-        (window as any).webVitals(metric.name, metric.value)
+      if (typeof window !== 'undefined' && window.webVitals) {
+        window.webVitals(metric.name, metric.value)
       }
 
       // Custom performance endpoint
@@ -110,8 +122,8 @@ class MonitoringService {
     // Send to error tracking service (Sentry, etc.)
     try {
       // Sentry
-      if (typeof window !== 'undefined' && (window as any).Sentry) {
-        (window as any).Sentry.captureException(error, { extra: context })
+      if (typeof window !== 'undefined' && window.Sentry) {
+        window.Sentry.captureException(error, { extra: context })
       }
 
       // Custom error endpoint
@@ -157,7 +169,7 @@ class MonitoringService {
   }
 
   // Private method to send data to custom analytics
-  private async sendToCustomAnalytics(data: any) {
+  private async sendToCustomAnalytics(data: Record<string, unknown>) {
     try {
       // Replace with your analytics endpoint
       await fetch('/api/analytics', {

@@ -110,7 +110,7 @@ export default function AdminDashboard() {
     } finally {
       setLoading(false)
     }
-  }, [dateFrom, dateTo])
+  }, [dateFrom, dateTo, loading])
 
   const handleExport = async () => {
     try {

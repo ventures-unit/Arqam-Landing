@@ -82,6 +82,7 @@ export default function AdminDashboard() {
   }
 
   const fetchAnalytics = useCallback(async () => {
+    if (loading) return; // Prevent multiple simultaneous requests
     try {
       setLoading(true)
       const params = new URLSearchParams()
@@ -96,6 +97,9 @@ export default function AdminDashboard() {
       if (!response.ok) {
         if (response.status === 401) {
           throw new Error('Unauthorized access. Please log in again.')
+        }
+        if (response.status === 429) {
+          throw new Error('Too many requests. Please wait a moment and try again.')
         }
         throw new Error('Failed to fetch analytics')
       }

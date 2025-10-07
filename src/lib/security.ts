@@ -6,6 +6,16 @@
 // Rate limiting store (in production, use Redis)
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 
+// Cleanup expired entries every 5 minutes
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, record] of rateLimitStore.entries()) {
+    if (now > record.resetTime) {
+      rateLimitStore.delete(key);
+    }
+  }
+}, 5 * 60 * 1000);
+
 export interface ValidationResult {
   isValid: boolean;
   errors: string[];
@@ -113,6 +123,7 @@ export function checkRateLimit(
 
   // Check if limit exceeded
   if (record.count >= maxRequests) {
+    console.log(`Rate limit exceeded for IP ${ip}: ${record.count}/${maxRequests} requests`);
     return false;
   }
 

@@ -59,12 +59,11 @@ export function validateInput(data: Record<string, unknown>): ValidationResult {
     }
   }
 
-  // Role validation
-  const validRoles = ['Founder', 'Government', 'Researcher', 'Investor', 'Other'];
-  if (!data.role || typeof data.role !== 'string' || !validRoles.includes(data.role)) {
-    errors.push('Please select a valid role');
+  // Role validation (now accepts organization types from multi-step form)
+  if (!data.role || typeof data.role !== 'string' || data.role.trim().length === 0) {
+    errors.push('Please select your organization type');
   } else {
-    sanitizedData.role = data.role;
+    sanitizedData.role = data.role.trim();
   }
 
   // Notes validation (optional)

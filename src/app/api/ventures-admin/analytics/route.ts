@@ -316,5 +316,5 @@ function generateCSV(signups: Array<{
 
 function isValidDate(dateString: string): boolean {
   const date = new Date(dateString)
-  return date instanceof Date && !isNaN(date.getTime()) && dateString.match(/^\d{4}-\d{2}-\d{2}$/)
+  return date instanceof Date && !isNaN(date.getTime()) && /^\d{4}-\d{2}-\d{2}$/.test(dateString)
 }

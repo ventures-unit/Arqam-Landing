@@ -82,35 +82,56 @@ export default function AdminDashboard() {
   }
 
   const fetchAnalytics = useCallback(async () => {
-    if (loading) return; // Prevent multiple simultaneous requests
     try {
       setLoading(true)
+      setError(null)
       const params = new URLSearchParams()
       if (dateFrom) params.append('dateFrom', dateFrom)
       if (dateTo) params.append('dateTo', dateTo)
       
+      console.log('Fetching analytics from:', `/api/ventures-admin/analytics?${params.toString()}`)
+      
+      // Add timeout to prevent infinite loading
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 30000) // 30 second timeout
+      
       const response = await fetch(`/api/ventures-admin/analytics?${params.toString()}`, {
         headers: {
           'x-admin-password': ADMIN_PASSWORD
-        }
+        },
+        signal: controller.signal
       })
+      
+      clearTimeout(timeoutId)
+      
+      console.log('Response status:', response.status)
+      
       if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
+        console.error('Response error:', errorData)
+        
         if (response.status === 401) {
           throw new Error('Unauthorized access. Please log in again.')
         }
         if (response.status === 429) {
           throw new Error('Too many requests. Please wait a moment and try again.')
         }
-        throw new Error('Failed to fetch analytics')
+        throw new Error(errorData.error || 'Failed to fetch analytics')
       }
       const data = await response.json()
+      console.log('Analytics data received:', data)
       setAnalytics(data)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load analytics')
+      if (err instanceof Error && err.name === 'AbortError') {
+        setError('Request timed out. Please check your connection and try again.')
+      } else {
+        setError(err instanceof Error ? err.message : 'Failed to load analytics')
+      }
+      console.error('Analytics fetch error:', err)
     } finally {
       setLoading(false)
     }
-  }, [dateFrom, dateTo, loading])
+  }, [dateFrom, dateTo])
 
   const handleExport = async () => {
     try {

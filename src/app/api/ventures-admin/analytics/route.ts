@@ -21,11 +21,16 @@ function verifyAdminAuth(request: NextRequest): boolean {
 
 export async function GET(request: NextRequest) {
   try {
+    console.log('Admin analytics API called')
+    
     // Rate limiting
     const forwarded = request.headers.get('x-forwarded-for')
     const ip = forwarded ? forwarded.split(',')[0] : 'unknown'
     
+    console.log('Request IP:', ip)
+    
     if (!checkRateLimit(ip, 30, 60000)) {
+      console.log('Rate limit exceeded for IP:', ip)
       return NextResponse.json(
         { error: 'Too many requests. Please try again later.' },
         { status: 429 }
@@ -33,7 +38,11 @@ export async function GET(request: NextRequest) {
     }
 
     // Admin authentication
-    if (!verifyAdminAuth(request)) {
+    const hasAuth = verifyAdminAuth(request)
+    console.log('Auth verification:', hasAuth)
+    
+    if (!hasAuth) {
+      console.log('Unauthorized access attempt')
       return NextResponse.json(
         { error: 'Unauthorized access' },
         { status: 401 }

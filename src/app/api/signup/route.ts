@@ -8,10 +8,11 @@ export async function POST(request: NextRequest) {
     const forwarded = request.headers.get('x-forwarded-for')
     const ip = forwarded ? forwarded.split(',')[0] : 'unknown'
     
-    // Check rate limit (3 requests per minute per IP for signup)
-    if (!checkRateLimit(ip, 3, 60000)) {
+    // Check rate limit (10 requests per 5 minutes per IP for signup)
+    // More lenient to allow users to correct errors and resubmit
+    if (!checkRateLimit(ip, 10, 300000)) {
       return NextResponse.json(
-        { error: 'Too many requests. Please try again later.' },
+        { error: 'Too many signup attempts. Please wait a few minutes and try again.' },
         { status: 429 }
       )
     }
@@ -40,13 +41,8 @@ export async function POST(request: NextRequest) {
       )
     }
     
-    // Check for disposable email
-    if (isDisposableEmail(body.email)) {
-      return NextResponse.json(
-        { error: 'Please use a valid business email address.' },
-        { status: 400 }
-      )
-    }
+    // Note: Removed disposable email check as it was too restrictive
+    // and blocking legitimate users
     
     // Validate required fields for new multi-step form
     if (!body.email || !body.fullName || !body.mobileNumber || !body.nationality) {

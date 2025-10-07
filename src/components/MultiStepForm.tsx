@@ -98,7 +98,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
       setCurrentStep(currentStep + 1)
     } else if (currentStep < totalSteps && !isStepValid(currentStep)) {
       // Show user feedback for invalid step
-      alert('Please fill in all required fields before proceeding to the next step.')
+      alert('Please complete all required fields (marked with *) before continuing.')
     }
   }
 
@@ -111,22 +111,23 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
   const isStepValid = (step: number) => {
     switch (step) {
       case 1:
-        return formData.fullName.trim() && 
-               formData.email.trim() && 
-               formData.mobileNumber.trim() && 
-               formData.nationality.trim() &&
-               formData.email.includes('@') // Basic email validation
+        // More lenient validation - just check if fields have content
+        return formData.fullName.trim().length > 0 && 
+               formData.email.trim().length > 0 && 
+               formData.mobileNumber.trim().length > 0 && 
+               formData.nationality.trim().length > 0 &&
+               formData.email.includes('@') && // Basic email validation
+               formData.email.includes('.') // Must have domain
       case 2:
-        return formData.organizationName.trim() && 
+        // More lenient - don't require "Other" fields to be filled
+        return formData.organizationName.trim().length > 0 && 
                formData.organizationType && 
-               formData.positionTitle.trim() &&
-               (formData.organizationType !== 'Other' || formData.organizationTypeOther.trim())
+               formData.positionTitle.trim().length > 0
       case 3:
-        return formData.interestedSectors.trim() && 
+        // More lenient - only require at least one selection
+        return formData.interestedSectors.trim().length > 0 && 
                formData.interestedDatasets.length > 0 && 
-               formData.dataUsage.length > 0 &&
-               (!formData.interestedDatasets.includes('Other') || formData.interestedDatasetsOther.trim()) &&
-               (!formData.dataUsage.includes('Other') || formData.dataUsageOther.trim())
+               formData.dataUsage.length > 0
       default:
         return false
     }
@@ -167,7 +168,7 @@ export default function MultiStepForm({ onSubmit, isSubmitting }: MultiStepFormP
       trackInteraction('form_validation_failed', 'multi_step_form', {
         step: currentStep
       })
-      alert('Please fill in all required fields before submitting.')
+      alert('Please complete all required fields to submit your registration.')
     }
   }
 

@@ -84,7 +84,7 @@ export default function AdminDashboard() {
   const fetchAnalytics = useCallback(async () => {
     try {
       setLoading(true)
-      setError(null)
+      setError('')
       const params = new URLSearchParams()
       if (dateFrom) params.append('dateFrom', dateFrom)
       if (dateTo) params.append('dateTo', dateTo)

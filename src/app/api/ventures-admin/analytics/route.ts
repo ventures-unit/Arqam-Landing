@@ -152,8 +152,8 @@ export async function GET(request: NextRequest) {
     // Group by interested sectors (now text field)
     const sectorKeywords = signups?.reduce((acc: Record<string, number>, signup) => {
       const sectors = signup.interested_sectors?.toLowerCase() || ''
-      const keywords = sectors.split(/[,\s]+/).filter(word => word.length > 2)
-      keywords.forEach(keyword => {
+      const keywords = sectors.split(/[,\s]+/).filter((word: string) => word.length > 2)
+      keywords.forEach((keyword: string) => {
         acc[keyword] = (acc[keyword] || 0) + 1
       })
       return acc

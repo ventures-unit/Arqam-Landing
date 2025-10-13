@@ -184,9 +184,9 @@ export default function EconomyPage() {
   const chartData = useMemo(() => {
     const base = data.chartData.map((item, idx) => ({
       ...item,
-      gdp: parseFloat(item.gdp),
-      inflation: parseFloat(item.inflation),
-      unemployment: parseFloat(item.unemployment),
+      gdp: item.gdp,
+      inflation: item.inflation,
+      unemployment: item.unemployment,
       anomaly: idx === 5 || idx === 12 ? true : false
     }))
 

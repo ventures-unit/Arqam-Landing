@@ -42,7 +42,7 @@ import { DataTable } from '@/components/tables/DataTable'
 
 const generateSparkline = (trend: string) => {
   const points = 12
-  let data = []
+  const data = []
   for (let i = 0; i < points; i++) {
     const base = trend === 'up' ? 50 + i * 3 : trend === 'down' ? 100 - i * 3 : 70
     data.push({ x: i, y: base + Math.random() * 10 })

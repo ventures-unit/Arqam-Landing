@@ -1,22 +1,30 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Lock, Eye, EyeOff } from 'lucide-react'
 
-interface PasswordProtectionProps {
-  onSuccess: () => void
-}
-
 const PROTOTYPE_PASSWORD = "We-Said-Data-Driven-Not-Data-Drowning-But-Here-We-Are-Prototype-Rabena-yostor"
 
-export function PasswordProtection({ onSuccess }: PasswordProtectionProps) {
+export function PasswordProtection() {
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const router = useRouter()
+
+  useEffect(() => {
+    // Check if user is already authenticated
+    const authenticated = sessionStorage.getItem('prototype_authenticated') === 'true'
+    if (authenticated) {
+      setIsAuthenticated(true)
+      router.push('/economy')
+    }
+  }, [router])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -29,12 +37,24 @@ export function PasswordProtection({ onSuccess }: PasswordProtectionProps) {
     if (password === PROTOTYPE_PASSWORD) {
       // Store authentication in sessionStorage
       sessionStorage.setItem('prototype_authenticated', 'true')
-      onSuccess()
+      setIsAuthenticated(true)
+      router.push('/economy')
     } else {
       setError('Incorrect password. Please try again.')
     }
     
     setIsLoading(false)
+  }
+
+  if (isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-white text-lg">Redirecting...</p>
+        </div>
+      </div>
+    )
   }
 
   return (

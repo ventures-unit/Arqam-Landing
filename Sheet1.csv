@@ -1,0 +1,101 @@
+Main Tabs,Sub Tabs,Section,Feature,Phase,App Status,Test Status
+Advisor,,Landing,Intro page with example prompts; 'Coming soon' or waitlist,Phase 1,Not Started,Pending
+Advisor,,Governance,"Disclaimer (non‑advisory), privacy/PDPL note, citation policy",Phase 1,Not Started,Pending
+Advisor,,Routing,Ask‑from‑dataset deep links route here with context stored,Phase 1,Not Started,Pending
+Advisor,,Chat,Chat input; multiline; enter‑to‑send,Phase 2,Not Started,Pending
+Advisor,,Citations,Answers include dataset citations with timestamps,Phase 2,Not Started,Pending
+Advisor,,Charts,Inline simple charts (time‑series/bar) with PNG/CSV download,Phase 2,Not Started,Pending
+Advisor,,Feedback,Thumbs up/down; copy answer; share link,Phase 2,Not Started,Pending
+Advisor,,Context,Automatic context injection from current page (dataset/map/trade),Phase 3,Not Started,Pending
+Advisor,,Inspector,'Show sources' and step summary to reduce hallucinations,Phase 3,Not Started,Pending
+Advisor,,Export,Export conversation as PDF/CSV,Phase 3,Not Started,Pending
+Advisor,,SQL/Code,Generate SQL for queryable datasets; export snippet,Phase 4,Not Started,Pending
+Advisor,,Agentic Tasks,"Multi‑step tasks (e.g., build a compare table then email) with review gates",Phase 5,Not Started,Pending
+Advisor,,Plugins,Hook into Business Builder/Price Comparison to prefill inputs,Phase 5,Not Started,Pending
+Advisor,Agentic Tasks,Platform,Scheduled questions (weekly brief) with email delivery,Phase 5,Not Started,Pending
+Advisor,Prompts,Library,"Curated prompt templates per role (policy, VC, SME)",Phase 2,Not Started,Pending
+Advisor,Prompts,Pinned,Pin favorite prompts,Phase 3,Not Started,Pending
+Advisor,Retrieval,Source Filters,Toggle which datasets/sources are allowed,Phase 3,Not Started,Pending
+Advisor,Retrieval,Time Filter,Limit answers to specific periods,Phase 3,Not Started,Pending
+Advisor,Reasoning,Show Work,'Explain calculation' step-by-step,Phase 3,Not Started,Pending
+Advisor,Reasoning,Unit Safety,Unit detection and standardized conversions,Phase 3,Not Started,Pending
+Advisor,Privacy,Redaction,Redact PII from answers/logs,Phase 2,Not Started,Pending
+Advisor,Citations,Deep Links,Citation click jumps to dataset row/section,Phase 3,Not Started,Pending
+Advisor,Shortcuts,From Map/Trade,Right-click → 'Ask AI about selection',Phase 3,Not Started,Pending
+Advisor,Exports,Email Brief,Send summarized brief to email,Phase 4,Not Started,Pending
+Advisor,Exports,Markdown/CSV,Export answers as Markdown/CSV,Phase 2,Not Started,Pending
+Advisor,Controls,Temperature,Basic creativity slider,Phase 4,Not Started,Pending
+Advisor,Safety,Number Checks,Highlight low-confidence numbers; underline with tooltip,Phase 3,Not Started,Pending
+Advisor,Safety,Citation Gate,Block answers without at least one citation,Phase 2,Not Started,Pending
+Advisor,Controls,Answer Length,Short/Medium/Verbose toggle,Phase 3,Not Started,Pending
+Advisor,Controls,Tone,Neutral/Executive/Analytical tone presets,Phase 4,Not Started,Pending
+Advisor,Prompts,Org Library,Org-wide saved prompts (admin curated),Phase 4,Not Started,Pending
+Advisor,Prompts,Inline Variables,Prompt templates with {{variable}} inputs,Phase 3,Not Started,Pending
+Advisor,Memory,Session Memory,Persist last 10 Qs per user (local),Phase 2,Not Started,Pending
+Advisor,Reports,One‑Pager,Generate one‑pager PDF with charts & citations,Phase 4,Not Started,Pending
+Advisor,APIs,Endpoint,POST /ai/ask with context payload (members),Phase 5,Not Started,Pending
+Economy,Dashboards,Core Indicators,"Predefined dashboards: GDP, inflation, unemployment",Phase 1,Not Started,Pending
+Economy,Visualization,Chart Builder,"Dynamic charts: line, bar, pie, area",Phase 1,Not Started,Pending
+Economy,Viewing,Modes,"Multiple views: summary, detailed, historical, forecasts",Phase 1,Not Started,Pending
+Economy,Filters,Dimensions,"Filters by sector, geography, and time period",Phase 1,Not Started,Pending
+Economy,Data,Exports,"Download/export charts, tables, raw data",Phase 1,Not Started,Pending
+Economy,AI,Insights,"AI-generated insights: trends, anomalies, forecasts",Phase 2,Not Started,Pending
+Economy,Simulation,Scenarios,Scenario simulation tools for policy impact analysis,Phase 2,Not Started,Pending
+Economy,Alerts,Macroeconomic Events,Alerts for major economic changes or data releases,Phase 2,Not Started,Pending
+Economy,Collaboration,Annotations & Sharing,User annotations and sharing on charts,Phase 3,Not Started,Pending
+Trade,Dashboards,Trade Flows,Pre-built dashboards by product and country,Phase 1,Not Started,Pending
+Trade,Visualization,Comparatives,"Comparative charts: imports vs exports, YoY",Phase 1,Not Started,Pending
+Trade,Maps,Partners,"Interactive trade maps (partners, volumes)",Phase 1,Not Started,Pending
+Trade,Filters,Dimensions,"Filters by trade type, commodity, time frame",Phase 1,Not Started,Pending
+Trade,Reports,Sectoral,Downloadable sectoral trade reports & analysis,Phase 1,Not Started,Pending
+Trade,Alerts,Shifts & Policy,Automated alerts for trade shifts/policy changes,Phase 2,Not Started,Pending
+Trade,Integrations,Customs,Integration with customs/trade databases,Phase 2,Not Started,Pending
+Trade,Watchers,Custom Watchlists,User-customizable watcher lists for trade metrics,Phase 2,Not Started,Pending
+Trade,Data,Exports,Export function for data and visualizations,Phase 1,Not Started,Pending
+Market Entry,Planning,Blueprint,Business plan builder with sector checklists,Phase 2,Not Started,Pending
+Market Entry,Scoring,Market Access,Automated market access scoring & risk indicators,Phase 2,Not Started,Pending
+Market Entry,CTAs,Contacts & Programs,"Real-time CTAs: brokers, regulators, grants",Phase 2,Not Started,Pending
+Market Entry,Strategy,Scenarios,Scenario planning for growth & expansion,Phase 3,Not Started,Pending
+Market Entry,Research,Competition,Competitor density heatmaps & opportunity sizing,Phase 3,Not Started,Pending
+Market Entry,Reports,Environment,Customized business environment reports,Phase 3,Not Started,Pending
+Market Entry,Support,Mentoring,Feedback & mentoring request submission,Phase 2,Not Started,Pending
+Price Monitor,Dashboards,Live Prices,Live commodity/product price dashboards,Phase 3,Not Started,Pending
+Price Monitor,Tables,Comparisons,Price comparison tables by vendor/region,Phase 3,Not Started,Pending
+Price Monitor,Analysis,Volatility & Forecasts,"Price volatility, trends, forecasting charts",Phase 3,Not Started,Pending
+Price Monitor,Alerts,Movements,User alerts for significant price moves/arbitrage,Phase 3,Not Started,Pending
+Price Monitor,Quality,Sources,Data source transparency & scraper health,Phase 3,Not Started,Pending
+Price Monitor,History,Trends,Historical price trend analysis,Phase 3,Not Started,Pending
+Price Monitor,Bulk,Uploads,Bulk product price upload & comparison,Phase 4,Not Started,Pending
+Price Monitor,Crowd,User Submissions,User-submitted price data with verification,Phase 4,Not Started,Pending
+Price Monitor,Integrations,Commerce,Integrations with e-commerce/retail platforms,Phase 4,Not Started,Pending
+Capital Access,Dashboards,Rates & Loans,Interest rate and loan product comparisons,Phase 2,Not Started,Pending
+Capital Access,Tools,Calculators,Financial calculators with up-to-date variables,Phase 2,Not Started,Pending
+Capital Access,Indicators,Banking Health,Banking sector health indicators & trends,Phase 3,Not Started,Pending
+Capital Access,Coverage,Fintech Data,Fintech products & emerging services coverage,Phase 3,Not Started,Pending
+Capital Access,Knowledge,Regulatory Updates,"Reports, summaries, and regulatory updates",Phase 2,Not Started,Pending
+Capital Access,Alerts,Policy Changes,Alerts for banking policies/interest rate changes,Phase 2,Not Started,Pending
+Capital Access,Eligibility,Credit & Loans,Loan eligibility and credit scoring tools,Phase 4,Not Started,Pending
+Capital Access,Guidance,Personal Finance,User guidance for financial planning/investment,Phase 2,Not Started,Pending
+Capital Access,API,Data Access,API access for banking data integration,Phase 4,Not Started,Pending
+Regulatory Access,Guides,Sector Entry,Step-by-step market entry guides by sector,Phase 1,Not Started,Pending
+Regulatory Access,Database,Licensing Requirements,Searchable licensing requirement database,Phase 1,Not Started,Pending
+Regulatory Access,Workflows,Compliance,Interactive licensing workflows & checklists,Phase 2,Not Started,Pending
+Regulatory Access,News,Regulation,Real-time regulatory news & policy updates,Phase 2,Not Started,Pending
+Regulatory Access,CTAs,Government Portals,Direct CTAs to government portals/agencies,Phase 2,Not Started,Pending
+Regulatory Access,Risk,Timelines,Risk & timeline dashboards for licensing,Phase 2,Not Started,Pending
+Regulatory Access,Cases,Success Stories,Market entry case studies & success stories,Phase 3,Not Started,Pending
+Regulatory Access,Support,FAQs & Chatbot,Licensing FAQs and chatbot support,Phase 2,Not Started,Pending
+Regulatory Access,Tracking,Milestones,Visual milestone trackers for applications,Phase 2,Not Started,Pending
+Regulatory Access,Docs,Repository,Document/form repositories for applications,Phase 1,Not Started,Pending
+Regulatory Access,Alerts,Renewals,Alerts for due dates and renewals,Phase 2,Not Started,Pending
+Regulatory Access,Advisory,Legal/Regulatory,Access to legal/regulatory advisory services,Phase 3,Not Started,Pending
+Sector Intelligence,Reports,Benchmarks,Cross-sector benchmark reports & dashboards,Phase 2,Not Started,Pending
+Sector Intelligence,Charts,Sector Trends,Sector-specific performance & growth trends,Phase 2,Not Started,Pending
+Sector Intelligence,Widgets,Peer Benchmarking,Peer benchmarking with customizable metrics,Phase 3,Not Started,Pending
+Sector Intelligence,Integrations,Intelligence,"Integrate industry news, reports, investment data",Phase 3,Not Started,Pending
+Sector Intelligence,Deep Dives,Subsectors,Subsector deep-dive & ecosystem mapping,Phase 3,Not Started,Pending
+Sector Intelligence,Funding,Investor Activity,Investor activity & funding trend dashboards,Phase 3,Not Started,Pending
+Sector Intelligence,Value Chain,Supply Chain,Supply/value chain visualization tools,Phase 4,Not Started,Pending
+Sector Intelligence,ESG,Indicators,ESG indicators by sector,Phase 4,Not Started,Pending
+Sector Intelligence,Briefs,Exports,Exportable industry intelligence briefs,Phase 2,Not Started,Pending
+Sector Intelligence,Heatmaps,Clusters,Interactive heatmaps: sector activity & clusters,Phase 4,Not Started,Pending

@@ -1,0 +1,155 @@
+{
+  "free": {
+    "views": {
+      "max": 3,
+      "unlimited": false
+    },
+    "dashboards": {
+      "max": 1,
+      "unlimited": false
+    },
+    "exports": {
+      "rows": {
+        "max": 1000,
+        "unlimited": false
+      },
+      "formats": ["csv", "png"]
+    },
+    "scheduler": {
+      "enabled": false
+    },
+    "api": {
+      "enabled": false,
+      "read": false,
+      "write": false
+    },
+    "seats": {
+      "max": 1,
+      "unlimited": false
+    },
+    "connectors": {
+      "max": 0,
+      "unlimited": false
+    },
+    "sso": {
+      "enabled": false
+    },
+    "roles": {
+      "custom": false
+    },
+    "rls": {
+      "fls": false
+    },
+    "audit": {
+      "export": false
+    },
+    "branding": {
+      "whitelabel": false
+    },
+    "support": {
+      "level": "community"
+    }
+  },
+  "pro": {
+    "views": {
+      "max": -1,
+      "unlimited": true
+    },
+    "dashboards": {
+      "max": -1,
+      "unlimited": true
+    },
+    "exports": {
+      "rows": {
+        "max": 100000,
+        "unlimited": false
+      },
+      "formats": ["csv", "png", "pdf", "excel"]
+    },
+    "scheduler": {
+      "enabled": true
+    },
+    "api": {
+      "enabled": true,
+      "read": true,
+      "write": false
+    },
+    "seats": {
+      "max": 5,
+      "unlimited": false
+    },
+    "connectors": {
+      "max": 1,
+      "unlimited": false
+    },
+    "sso": {
+      "enabled": false
+    },
+    "roles": {
+      "custom": false
+    },
+    "rls": {
+      "fls": false
+    },
+    "audit": {
+      "export": false
+    },
+    "branding": {
+      "whitelabel": false
+    },
+    "support": {
+      "level": "email"
+    }
+  },
+  "enterprise": {
+    "views": {
+      "max": -1,
+      "unlimited": true
+    },
+    "dashboards": {
+      "max": -1,
+      "unlimited": true
+    },
+    "exports": {
+      "rows": {
+        "max": -1,
+        "unlimited": true
+      },
+      "formats": ["csv", "png", "pdf", "excel", "json"]
+    },
+    "scheduler": {
+      "enabled": true
+    },
+    "api": {
+      "enabled": true,
+      "read": true,
+      "write": true
+    },
+    "seats": {
+      "max": -1,
+      "unlimited": true
+    },
+    "connectors": {
+      "max": -1,
+      "unlimited": true
+    },
+    "sso": {
+      "enabled": true
+    },
+    "roles": {
+      "custom": true
+    },
+    "rls": {
+      "fls": true
+    },
+    "audit": {
+      "export": true
+    },
+    "branding": {
+      "whitelabel": true
+    },
+    "support": {
+      "level": "priority"
+    }
+  }
+}

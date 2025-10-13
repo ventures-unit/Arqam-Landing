@@ -1,0 +1,23 @@
+Plan,Role,Module,Feature,Limit/Value,Flag
+Free,End User,all,Saved Views,max=3,views.max=3
+Free,End User,all,Dashboards,max=1,dash.max=1
+Free,End User,Price Monitor,Export rows,max=1000,export.rows.max=1000
+Free,End User,all,Scheduled Reports,disabled,scheduler.enabled=false
+Free,End User,all,API,disabled,api.enabled=false
+Free,Org Admin,Org,Seats,max=1,seats.max=1
+Free,Data Admin,Data,Connectors,max=0,connectors.max=0
+Pro,End User,all,Saved Views,unlimited,views.max=-1
+Pro,End User,all,Dashboards,unlimited,dash.max=-1
+Pro,End User,all,Export rows,max=100000,export.rows.max=100000
+Pro,End User,all,Scheduled Reports,enabled,scheduler.enabled=true
+Pro,End User,all,Slack/Webhooks,enabled,integrations.slack_webhook=true
+Pro,End User,all,API,read,api.read=true
+Pro,Org Admin,Org,Seats,max=5,seats.max=5
+Pro,Data Admin,Data,Connectors,max=1,connectors.max=1
+Enterprise,End User,all,Whitelabel,enabled,brand.whitelabel=true
+Enterprise,Org Admin,Org,SSO,enabled,sso.enabled=true
+Enterprise,Org Admin,Org,Custom roles,enabled,roles.custom=true
+Enterprise,Org Admin,Org,Audit export,enabled,audit.export=true
+Enterprise,Data Admin,Data,RLS/FLS,enabled,rls.fls=true
+Enterprise,Data Admin,Data,Connectors,min=3,connectors.max=3
+Enterprise,Data Admin,Data,API,read/write,api.write=true

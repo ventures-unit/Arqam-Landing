@@ -553,7 +553,7 @@ export default function EconomyPage() {
                 {showExportMenu && (
                   <div className="absolute right-0 mt-1 w-44 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
                     <button className="w-full px-3 py-1.5 text-[11px] text-left hover:bg-gray-50 flex items-center gap-2">
-                      <Image className="h-3 w-3 text-gray-500" alt="" />
+                      <Image className="h-3 w-3 text-gray-500" />
                       Export as PNG
                     </button>
                     <button className="w-full px-3 py-1.5 text-[11px] text-left hover:bg-gray-50 flex items-center gap-2">

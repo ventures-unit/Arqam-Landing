@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useCallback } from 'react'
 import { AreaChart, Area, LineChart, Line, ComposedChart, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine, Cell } from 'recharts'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -40,7 +40,7 @@ export default function PricesPage() {
   const [selectedRows, setSelectedRows] = useState<number[]>([])
 
   // Mock price data
-  const generateHistoricalData = () => {
+  const generateHistoricalData = useCallback(() => {
     const periods = granularity === '1H' ? 60 : granularity === '1D' ? 24 : granularity === '7D' ? 7 : granularity === '30D' ? 30 : 365
     const data = []
     let oil = 76.5
@@ -63,9 +63,9 @@ export default function PricesPage() {
       })
     }
     return data
-  }
+  }, [granularity])
 
-  const historicalData = useMemo(() => generateHistoricalData(), [])
+  const historicalData = useMemo(() => generateHistoricalData(), [generateHistoricalData])
 
   // Bollinger Bands data - memoized
   const bollingerData = useMemo(() => {

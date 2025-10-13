@@ -794,7 +794,7 @@ export default function EconomyPage() {
                       dataKey="gdp"
                       stroke="#3b82f6"
                       strokeWidth={2}
-                      strokeDasharray={(payload: any) => payload?.isForecast ? '5 5' : '0'}
+                      strokeDasharray="0"
                       fill="url(#colorGdp)"
                       fillOpacity={1}
                       dot={<CustomDot />}
@@ -804,7 +804,7 @@ export default function EconomyPage() {
                       dataKey="inflation"
                       stroke="#8b5cf6"
                       strokeWidth={2}
-                      strokeDasharray={(payload: any) => payload?.isForecast ? '5 5' : '0'}
+                      strokeDasharray="0"
                       dot={false}
                     />
                     <Line
@@ -812,7 +812,7 @@ export default function EconomyPage() {
                       dataKey="unemployment"
                       stroke="#10b981"
                       strokeWidth={2}
-                      strokeDasharray={(payload: any) => payload?.isForecast ? '5 5' : '0'}
+                      strokeDasharray="0"
                       dot={false}
                     />
                   </ComposedChart>

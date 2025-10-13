@@ -7,14 +7,10 @@ const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
 
 // Server-side Supabase client
 export const createServerSupabase = () => {
-  const cookieStore = cookies()
-  
   return createClient(supabaseUrl, supabaseAnonKey, {
     auth: {
-      getSession: async () => {
-        // This would need to be implemented with proper cookie handling
-        return { data: { session: null }, error: null }
-      }
+      autoRefreshToken: false,
+      persistSession: false
     }
   })
 }

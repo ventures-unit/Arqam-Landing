@@ -65,7 +65,7 @@ export default function PricesPage() {
     return data
   }
 
-  const historicalData = useMemo(() => generateHistoricalData(), [granularity, generateHistoricalData])
+  const historicalData = useMemo(() => generateHistoricalData(), [])
 
   // Bollinger Bands data - memoized
   const bollingerData = useMemo(() => {

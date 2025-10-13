@@ -23,7 +23,7 @@ interface ChecklistData {
 
 class ChecklistManager {
   private filePath: string
-  private content: string
+  private content: string = ''
 
   constructor() {
     this.filePath = join(process.cwd(), 'docs', 'BUILD_CHECKLIST.md')
@@ -158,8 +158,8 @@ class ChecklistManager {
   }
 
   add(sectionName: string, content: string, options: { owner?: string; due?: string } = {}) {
-    const sections = this.parseChecklist()
-    const section = sections.find(s => s.name === sectionName)
+    const data = this.parseChecklist()
+    const section = data.sections.find(s => s.name === sectionName)
     
     if (!section) {
       console.error(`❌ Section "${sectionName}" not found`)
@@ -176,15 +176,15 @@ class ChecklistManager {
     }
 
     section.items.push(newItem)
-    this.updateContent(sections)
+    this.updateContent(data.sections)
     this.saveFile()
     
     console.log(`✅ Added item to ${sectionName}: "${content}"`)
   }
 
   done(searchContent: string) {
-    const sections = this.parseChecklist()
-    const result = this.findItem(sections, searchContent)
+    const data = this.parseChecklist()
+    const result = this.findItem(data.sections, searchContent)
     
     if (!result) {
       console.error(`❌ Item not found: "${searchContent}"`)
@@ -192,15 +192,15 @@ class ChecklistManager {
     }
 
     result.item.status = 'DONE'
-    this.updateContent(sections)
+    this.updateContent(data.sections)
     this.saveFile()
     
     console.log(`✅ Marked as done: "${result.item.content}"`)
   }
 
   link(searchContent: string, prUrl: string) {
-    const sections = this.parseChecklist()
-    const result = this.findItem(sections, searchContent)
+    const data = this.parseChecklist()
+    const result = this.findItem(data.sections, searchContent)
     
     if (!result) {
       console.error(`❌ Item not found: "${searchContent}"`)
@@ -215,15 +215,15 @@ class ChecklistManager {
       result.item.links.push(prUrl)
     }
 
-    this.updateContent(sections)
+    this.updateContent(data.sections)
     this.saveFile()
     
     console.log(`✅ Added link to "${result.item.content}": ${prUrl}`)
   }
 
   status(searchContent: string, newStatus: 'TODO' | 'IN-PROGRESS' | 'DONE') {
-    const sections = this.parseChecklist()
-    const result = this.findItem(sections, searchContent)
+    const data = this.parseChecklist()
+    const result = this.findItem(data.sections, searchContent)
     
     if (!result) {
       console.error(`❌ Item not found: "${searchContent}"`)
@@ -231,17 +231,17 @@ class ChecklistManager {
     }
 
     result.item.status = newStatus
-    this.updateContent(sections)
+    this.updateContent(data.sections)
     this.saveFile()
     
     console.log(`✅ Updated status for "${result.item.content}": ${newStatus}`)
   }
 
   list(sectionName?: string) {
-    const sections = this.parseChecklist()
+    const data = this.parseChecklist()
     
     if (sectionName) {
-      const section = sections.find(s => s.name === sectionName)
+      const section = data.sections.find(s => s.name === sectionName)
       if (!section) {
         console.error(`❌ Section "${sectionName}" not found`)
         process.exit(1)
@@ -262,7 +262,7 @@ class ChecklistManager {
       console.log('\n📋 All Sections')
       console.log('===============')
       
-      for (const section of sections) {
+      for (const section of data.sections) {
         const doneCount = section.items.filter(item => item.status === 'DONE').length
         const totalCount = section.items.length
         const progress = totalCount > 0 ? Math.round((doneCount / totalCount) * 100) : 0

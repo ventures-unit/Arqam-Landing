@@ -17,7 +17,7 @@ export const BUSINESS_ARCHETYPES: BusinessArchetype[] = [
     isic_code: '5610',
     sector: 'Food & Beverage',
     tags: ['food', 'restaurant', 'retail'],
-    
+    icon: '🍕',
     popular: true
   },
   {
@@ -27,7 +27,7 @@ export const BUSINESS_ARCHETYPES: BusinessArchetype[] = [
     isic_code: '5630',
     sector: 'Food & Beverage',
     tags: ['food', 'beverage', 'retail'],
-    
+    icon: '☕',
     popular: true
   },
   {
@@ -37,7 +37,7 @@ export const BUSINESS_ARCHETYPES: BusinessArchetype[] = [
     isic_code: '4711',
     sector: 'Retail Trade',
     tags: ['retail', 'food', 'essentials'],
-    
+    icon: '🛒',
     popular: true
   },
   {
@@ -47,7 +47,7 @@ export const BUSINESS_ARCHETYPES: BusinessArchetype[] = [
     isic_code: '4772',
     sector: 'Healthcare Retail',
     tags: ['healthcare', 'retail', 'regulated'],
-    
+    icon: '💊',
     popular: true
   },
   {
@@ -57,7 +57,7 @@ export const BUSINESS_ARCHETYPES: BusinessArchetype[] = [
     isic_code: '4771',
     sector: 'Fashion Retail',
     tags: ['fashion', 'retail', 'apparel'],
-    
+    icon: '👗',
     popular: true
   },
   {
@@ -67,7 +67,7 @@ export const BUSINESS_ARCHETYPES: BusinessArchetype[] = [
     isic_code: '1311',
     sector: 'Manufacturing',
     tags: ['manufacturing', 'textiles', 'production'],
-    
+    icon: '🧵',
     popular: false
   },
   {
@@ -77,7 +77,7 @@ export const BUSINESS_ARCHETYPES: BusinessArchetype[] = [
     isic_code: '1071',
     sector: 'Food Manufacturing',
     tags: ['food', 'manufacturing', 'retail'],
-    
+    icon: '🥖',
     popular: true
   },
   {
@@ -87,7 +87,7 @@ export const BUSINESS_ARCHETYPES: BusinessArchetype[] = [
     isic_code: '9602',
     sector: 'Personal Services',
     tags: ['services', 'beauty', 'personal care'],
-    
+    icon: '💄',
     popular: true
   },
   {
@@ -97,7 +97,7 @@ export const BUSINESS_ARCHETYPES: BusinessArchetype[] = [
     isic_code: '9311',
     sector: 'Sports & Recreation',
     tags: ['sports', 'fitness', 'services'],
-    
+    icon: '💪',
     popular: false
   },
   {
@@ -107,7 +107,7 @@ export const BUSINESS_ARCHETYPES: BusinessArchetype[] = [
     isic_code: '9511',
     sector: 'Repair Services',
     tags: ['services', 'repair', 'electronics'],
-    
+    icon: '🔧',
     popular: false
   },
   {
@@ -117,7 +117,7 @@ export const BUSINESS_ARCHETYPES: BusinessArchetype[] = [
     isic_code: '4520',
     sector: 'Automotive Services',
     tags: ['automotive', 'services', 'cleaning'],
-    
+    icon: '🚗',
     popular: false
   },
   {
@@ -127,7 +127,7 @@ export const BUSINESS_ARCHETYPES: BusinessArchetype[] = [
     isic_code: '8891',
     sector: 'Childcare Services',
     tags: ['education', 'childcare', 'services'],
-    
+    icon: '👶',
     popular: false
   }
 ]

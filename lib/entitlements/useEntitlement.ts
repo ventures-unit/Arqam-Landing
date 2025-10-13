@@ -112,7 +112,18 @@ export function useEntitlement() {
     
     // Check if a feature is available
     hasFeature: (feature: string): boolean => {
-      return canUse(feature)
+      const featurePath = feature.split('.')
+      let value: any = userEntitlements
+      
+      for (const key of featurePath) {
+        if (value && typeof value === 'object' && key in value) {
+          value = value[key]
+        } else {
+          return false
+        }
+      }
+      
+      return Boolean(value)
     }
   }
 }

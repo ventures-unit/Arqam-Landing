@@ -69,7 +69,7 @@ export default function AdminDashboard() {
   const [exporting, setExporting] = useState(false)
 
   // Simple password protection
-  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'arqamarqam@arqam@admin'
+  const ADMIN_PASSWORD = 'arqam@arqam@admin'
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()

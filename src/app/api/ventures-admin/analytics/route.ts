@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase'
 import { checkRateLimit } from '@/lib/security'
 
 // Simple admin authentication
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'arqam2025admin'
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'arqam@arqam@admin'
 
 function verifyAdminAuth(request: NextRequest): boolean {
   const authHeader = request.headers.get('authorization')

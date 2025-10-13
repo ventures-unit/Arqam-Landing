@@ -11,6 +11,7 @@ import {
   Search, 
   Command, 
   ArrowRight,
+  HelpCircle,
   LucideIcon
 } from 'lucide-react'
 import { cn } from '@/lib/utils'

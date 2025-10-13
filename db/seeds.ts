@@ -299,6 +299,7 @@ async function seedDatabase() {
     console.log('Creating sample views...')
     const views = [
       {
+        id: 'view-1',
         name: 'GDP Trends',
         description: 'Quarterly GDP growth analysis',
         module: 'economy',
@@ -310,6 +311,7 @@ async function seedDatabase() {
         is_public: false
       },
       {
+        id: 'view-2',
         name: 'Trade Balance by Country',
         description: 'Monthly trade balance comparison',
         module: 'trade',

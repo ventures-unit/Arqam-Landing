@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { PrototypeGuard } from '@/components/auth/PrototypeGuard'
+import { MobileBlocker } from '@/components/auth/MobileBlocker'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -54,9 +55,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <PrototypeGuard>
-          {children}
-        </PrototypeGuard>
+        <MobileBlocker>
+          <PrototypeGuard>
+            {children}
+          </PrototypeGuard>
+        </MobileBlocker>
         <Analytics />
       </body>
     </html>

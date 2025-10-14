@@ -9,14 +9,13 @@ export function MobileBlocker({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const checkIfMobile = () => {
-      // Check if device is mobile using multiple methods
+      // Check if device is mobile using user agent and screen size
       const userAgent = navigator.userAgent.toLowerCase()
       const isMobileUserAgent = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)
       const isMobileScreen = window.innerWidth < 1024 // Less than 1024px width
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
       
-      // Consider it mobile if any of these conditions are true
-      const isMobileDevice = isMobileUserAgent || (isMobileScreen && isTouchDevice)
+      // Consider it mobile if user agent indicates mobile OR screen is too small
+      const isMobileDevice = isMobileUserAgent || isMobileScreen
       
       setIsMobile(isMobileDevice)
       setIsChecking(false)
@@ -26,9 +25,10 @@ export function MobileBlocker({ children }: { children: React.ReactNode }) {
 
     // Re-check on window resize
     const handleResize = () => {
+      const userAgent = navigator.userAgent.toLowerCase()
+      const isMobileUserAgent = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)
       const isMobileScreen = window.innerWidth < 1024
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-      setIsMobile(isMobileScreen && isTouchDevice)
+      setIsMobile(isMobileUserAgent || isMobileScreen)
     }
 
     window.addEventListener('resize', handleResize)

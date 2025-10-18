@@ -10,7 +10,7 @@ export default function LandingPage() {
 
   const handleGetStarted = () => {
     sessionStorage.setItem('user_logged_in', 'true')
-    router.push('/')
+    router.push('/password')
   }
 
   return (

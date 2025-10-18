@@ -12,8 +12,8 @@ export function PrototypeGuard({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
 
   useEffect(() => {
-    // Don't protect landing and password pages
-    if (pathname === '/landing' || pathname === '/') {
+    // Don't protect landing, root, and password pages
+    if (pathname === '/landing' || pathname === '/' || pathname === '/password') {
       setIsChecking(false)
       setIsAuthenticated(true)
       return
@@ -34,7 +34,7 @@ export function PrototypeGuard({ children }: { children: React.ReactNode }) {
 
     if (!authenticated) {
       // Logged in but no password, redirect to password page
-      router.push('/')
+      router.push('/password')
     } else {
       setIsAuthenticated(true)
     }

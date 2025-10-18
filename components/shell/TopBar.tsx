@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useAuth } from '@/lib/auth/useAuth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -13,11 +14,13 @@ import {
   User,
   LogOut,
   ChevronDown,
-  Command
+  Command,
+  ArrowLeft
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export function TopBar() {
+  const router = useRouter()
   const { user, signOut } = useAuth()
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
 
@@ -28,6 +31,17 @@ export function TopBar() {
   return (
     <header className="h-12 border-b border-gray-200 bg-white">
       <div className="flex h-full items-center justify-between px-4 gap-4">
+        {/* Back to Suite Button */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => router.push('/suite')}
+          className="text-xs h-7"
+        >
+          <ArrowLeft className="w-3.5 h-3.5 mr-1.5" />
+          Back to Suite
+        </Button>
+
         {/* Geographic Selector */}
         <GeographicSelector />
 

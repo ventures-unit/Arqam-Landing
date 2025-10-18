@@ -12,23 +12,33 @@ export function PrototypeGuard({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
 
   useEffect(() => {
-    // Don't protect the root path (that's where the password form is)
-    if (pathname === '/') {
+    // Don't protect landing and password pages
+    if (pathname === '/landing' || pathname === '/') {
       setIsChecking(false)
       setIsAuthenticated(true)
       return
     }
 
-    // Check authentication status
+    // Check if user has logged in from landing page
+    const userLoggedIn = sessionStorage.getItem('user_logged_in') === 'true'
+
+    if (!userLoggedIn) {
+      // Not logged in, redirect to landing
+      router.push('/landing')
+      setIsChecking(false)
+      return
+    }
+
+    // Check prototype password authentication
     const authenticated = sessionStorage.getItem('prototype_authenticated') === 'true'
-    
+
     if (!authenticated) {
-      // Not authenticated, redirect to root
+      // Logged in but no password, redirect to password page
       router.push('/')
     } else {
       setIsAuthenticated(true)
     }
-    
+
     setIsChecking(false)
   }, [pathname, router])
 

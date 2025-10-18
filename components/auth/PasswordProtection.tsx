@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Lock, Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff } from 'lucide-react'
+import Image from 'next/image'
 
 const PROTOTYPE_PASSWORD = "We-Said-Data-Driven-Not-Data-Drowning-But-Here-We-Are-Prototype-Rabena-yostor"
 
@@ -18,11 +19,19 @@ export function PasswordProtection() {
   const router = useRouter()
 
   useEffect(() => {
-    // Check if user is already authenticated
+    // Check if user has logged in from landing page
+    const userLoggedIn = sessionStorage.getItem('user_logged_in') === 'true'
+    if (!userLoggedIn) {
+      // No login, redirect to landing
+      router.push('/landing')
+      return
+    }
+
+    // Check if user is already authenticated with password
     const authenticated = sessionStorage.getItem('prototype_authenticated') === 'true'
     if (authenticated) {
       setIsAuthenticated(true)
-      router.push('/economy')
+      router.push('/select-user-type')
     }
   }, [router])
 
@@ -38,7 +47,7 @@ export function PasswordProtection() {
       // Store authentication in sessionStorage
       sessionStorage.setItem('prototype_authenticated', 'true')
       setIsAuthenticated(true)
-      router.push('/economy')
+      router.push('/select-user-type')
     } else {
       setError('Incorrect password. Please try again.')
     }
@@ -62,15 +71,21 @@ export function PasswordProtection() {
       <div className="w-full max-w-md">
         <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-sm">
           <CardHeader className="text-center space-y-4">
-            <div className="mx-auto w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
-              <Lock className="w-8 h-8 text-white" />
+            <div className="mx-auto w-16 h-16 flex items-center justify-center">
+              <Image
+                src="/Branding/Arqam - logo-neon blue.svg"
+                alt="Arqam Logo"
+                width={64}
+                height={64}
+                priority
+              />
             </div>
             <div>
               <CardTitle className="text-2xl font-bold text-gray-900">
                 Arqam Prototype
               </CardTitle>
               <CardDescription className="text-gray-600 mt-2">
-                Enter the prototype password to access the analytics platform
+                Enter the prototype password to access the Data Products Suite
               </CardDescription>
             </div>
           </CardHeader>
@@ -132,7 +147,7 @@ export function PasswordProtection() {
 
             <div className="mt-6 text-center">
               <p className="text-xs text-gray-500">
-                This is a prototype version of the Arqam analytics platform
+                This is a prototype version of Arqam - Data Products Suite
               </p>
             </div>
           </CardContent>

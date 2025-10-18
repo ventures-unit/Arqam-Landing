@@ -66,7 +66,7 @@ export function MobileBlocker({ children }: { children: React.ReactNode }) {
             </h1>
             
             <p className="text-gray-600 mb-6 leading-relaxed">
-              The Arqam Enterprise Analytics Platform is optimized for desktop and laptop computers for the best experience.
+              Arqam - Data Products Suite is optimized for desktop and laptop computers for the best experience.
             </p>
 
             <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 mb-6">
@@ -98,7 +98,7 @@ export function MobileBlocker({ children }: { children: React.ReactNode }) {
           {/* Branding */}
           <div className="mt-6 text-center">
             <p className="text-white/80 text-sm">
-              Arqam Enterprise Analytics Platform
+              Arqam - Data Products Suite
             </p>
             <p className="text-white/60 text-xs mt-1">
               Professional business intelligence requires a professional display

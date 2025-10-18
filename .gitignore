@@ -115,3 +115,7 @@ temp/
 *.njsproj
 *.sln
 *.sw?
+
+# Archive (development docs and data files)
+docs/archive/
+docs/archive/csv-data/

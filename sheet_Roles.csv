@@ -1,5 +1,0 @@
-Role,Can View,Can Create,Can Manage,Export Limit,Notes
-End User,8 modules + Saved Views/Dashboards,Saved Views/Dashboards,—,Plan-based,RLS enforced
-Org Admin,User app + Org console,"Invites, workspaces","Team, roles, billing, org settings",Unlimited,No data-source ops unless also Data Admin
-Data Admin,User app + Data console,"Sources, uploads, datasets","Catalog, Quality, Policies (RLS/FLS), Lineage",Unlimited,No billing
-Platform Admin,Tenant metadata,Support actions,"Tenant ops (audited, time-bound)",—,No customer data by default

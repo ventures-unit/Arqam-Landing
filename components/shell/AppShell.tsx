@@ -1,48 +1,83 @@
 'use client'
 
-import { ReactNode } from 'react'
-import { LeftSidebar } from './LeftSidebar'
-import { TopBar } from './TopBar'
-import { BottomDock } from './BottomDock'
+import { ReactNode, useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { DynamicSidebar } from './DynamicSidebar'
+import { WorkspaceToggle } from './WorkspaceToggle'
 import { CommandPalette } from '@/components/nav/CommandPalette'
 import { useAuth } from '@/lib/auth/useAuth'
-import { cn } from '@/lib/utils'
+
+export type Workspace = 'intelligence' | 'build' | 'analyze' | 'explore'
 
 interface AppShellProps {
-  children: ReactNode
+  children?: ReactNode
 }
 
 export function AppShell({ children }: AppShellProps) {
   const { user, loading } = useAuth()
+  const pathname = usePathname()
+  const [activeWorkspace, setActiveWorkspace] = useState<Workspace>('intelligence')
+  const [activeModule, setActiveModule] = useState<string>('economy')
 
-  // For development: Always show the shell with sidebar
-  // Remove the auth check to show sidebar even when not logged in
-  const showShell = true // Change this to !!user in production
+  // Detect workspace and module from URL
+  useEffect(() => {
+    const pathParts = pathname.split('/').filter(Boolean)
+
+    // Handle /login routes (preview mode)
+    if (pathParts.length >= 2 && pathParts[0] === 'login') {
+      const workspace = pathParts[1] as Workspace
+      const modulePath = pathParts[2] || ''
+
+      setActiveWorkspace(workspace)
+      setActiveModule(modulePath)
+      return
+    }
+
+    // Handle /{workspace} routes (authenticated mode)
+    if (pathParts.length >= 1) {
+      const workspace = pathParts[0] as Workspace
+
+      // Valid workspaces
+      if (['intelligence', 'analyze', 'build', 'explore'].includes(workspace)) {
+        setActiveWorkspace(workspace)
+
+        // Determine active module
+        if (pathParts.length >= 2) {
+          // For product routes: /workspace/products/productId
+          if (pathParts[1] === 'products' && pathParts.length >= 3) {
+            setActiveModule(pathParts[2])
+          } else {
+            // For intelligence modules and global features: /workspace/moduleName
+            setActiveModule(pathParts[1])
+          }
+        }
+      }
+    }
+  }, [pathname])
 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
       </div>
     )
   }
 
-  if (!showShell) {
-    return <>{children}</>
-  }
-
   return (
-    <div className="flex h-screen bg-gray-50 overflow-hidden">
-      {/* Left Sidebar */}
-      <LeftSidebar />
+    <div className="flex h-screen bg-white overflow-hidden">
+      {/* Dynamic Sidebar */}
+      <DynamicSidebar
+        activeWorkspace={activeWorkspace}
+        activeModule={activeModule}
+      />
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Bar with Geographic Selector */}
-        <TopBar />
+        {/* Workspace Toggle Bar */}
+        <WorkspaceToggle activeWorkspace={activeWorkspace} />
 
-        {/* Page Content */}
-        <main className="flex-1 overflow-auto">
+        {/* Page Content - Next.js automatically handles loading.tsx */}
+        <main className="flex-1 overflow-auto bg-gray-50">
           {children}
         </main>
       </div>

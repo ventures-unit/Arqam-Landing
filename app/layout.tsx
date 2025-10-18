@@ -8,7 +8,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Arqam - Enterprise Analytics Platform',
+  title: 'Arqam - Data Products Suite',
   description: 'Comprehensive analytics platform for enterprise decision-making',
   keywords: ['analytics', 'enterprise', 'data', 'insights', 'business intelligence'],
   authors: [{ name: 'Arqam Team' }],
@@ -24,13 +24,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
-    title: 'Arqam - Enterprise Analytics Platform',
+    title: 'Arqam - Data Products Suite',
     description: 'Comprehensive analytics platform for enterprise decision-making',
     siteName: 'Arqam',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Arqam - Enterprise Analytics Platform',
+    title: 'Arqam - Data Products Suite',
     description: 'Comprehensive analytics platform for enterprise decision-making',
     creator: '@arqam',
   },

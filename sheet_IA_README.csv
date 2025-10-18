@@ -1,5 +1,0 @@
-Key,Value
-Left Sidebar,"Top = 8 modules only. Below = Saved Views, Dashboards, Datasets (optional), Notifications, Help. Bottom dock = Workspace Switcher, Settings, Admin."
-Top Bar,"Breadcrumb, global search, quick create, share, user menu."
-Auth,"Standalone: /auth/signup, /auth/login, /auth/forgot, /auth/mfa."
-Consoles,Org/Data/Admin live under Admin Hub; not main tabs.

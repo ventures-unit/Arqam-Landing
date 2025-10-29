@@ -568,13 +568,12 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <Image 
-                src="/images/arqam-white.png" 
-                alt="Arqam Logo" 
-                width={320}
-                height={80}
-                className="h-80 w-auto"
-                style={{ width: 'auto', height: 'auto' }}
+              <Image
+                src="/images/arqam-white.svg"
+                alt="Arqam Logo"
+                width={240}
+                height={55}
+                className="h-7 sm:h-9 md:h-11 lg:h-13 w-auto"
                 priority
               />
             </div>
